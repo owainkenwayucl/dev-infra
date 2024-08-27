@@ -29,7 +29,7 @@ resource "harvester_virtualmachine" "vm" {
   namespace            = var.namespace
   restart_after_update = true
 
-  description = "Docker VM"
+  description = "Base VM"
 
   cpu    = 2
   memory = "16Gi"
