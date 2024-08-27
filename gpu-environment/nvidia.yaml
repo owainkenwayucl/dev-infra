@@ -1,0 +1,30 @@
+- Set up Nvidia drivers
+  hosts: gpunodes
+  become: true
+  become_user: root
+  tasks:
+  - name: Nvidia repo
+    ansible.builtin.yum_repository:
+      baseurl: https://developer.download.nvidia.com/compute/cuda/repos/rhel9/x86_64
+      state: present
+      name: "Nvidia"
+      description: "Nvidia repo"
+      gpgkey: https://developer.download.nvidia.com/compute/cuda/repos/rhel9/x86_64/D42D0685.pub
+      gpgcheck: true
+  - name: Driver
+    ansible.builtin.dnf:
+      name: 
+        - '@nvidia-driver:open-dkms'
+        - nvtop
+        - pciutils
+      state: latest
+  - name: Cuda
+    ansible.builtin.dnf:
+      name: 
+        - cuda-toolkit-12-6
+        - libcudnn8
+        - libcudnn8-devel
+        - libnccl
+        - libnccl-devel
+        - libnccl-static
+      state: latest
