@@ -1,4 +1,4 @@
-- Set up Nvidia drivers
+- name: Set up Nvidia drivers
   hosts: gpunodes
   become: true
   become_user: root
