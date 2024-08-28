@@ -8,12 +8,13 @@ safetensors
 ipykernel
 scipy
 ipywidgets
-nvitop
-jupyterlab
 protobuf
 sentencepiece
+nvitop
+jupyterlab
 numpy
 medmnist
 onnx
 onnxscript
 onnxruntime
+lightning
