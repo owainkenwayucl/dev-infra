@@ -7,7 +7,7 @@
       dest: "/home/almalinux/requirements.txt"
   - name: Set up virtualenv
     ansible.builtin.pip:
-      reqirements: "/home/almalinux/requirements.txt"
+      requirements: "/home/almalinux/requirements.txt"
       state: latest
       virtualenv_python: python3.12
       virtualenv: "/home/almalinux/pytorch"
