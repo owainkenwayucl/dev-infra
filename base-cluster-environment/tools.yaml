@@ -24,3 +24,22 @@
         - python3-pip
         - python3-virtualenv
       state: latest
+  - name: Install compilers
+    ansible.builtin.dnf:
+      name:
+      - g++
+      - gfortran
+      - openmpi-devel
+      - openmpi
+      - patch
+      - bzip2
+      - python3-mpi4py-openmpi
+      state: latest
+  - name: Install Slurm
+    ansible.builtin.dnf:
+      name:
+      - slurm
+      - slurm-slurmd
+      - slurm-slurmctld
+      - munge
+      state: latest
