@@ -19,3 +19,8 @@
       src: "{{groups['mgmtnode'][0]}}:/nfs"
       path: /nfs
       opts: defaults,_netdev
+  - name: Create home directory sym-link
+    ansible.builtin.file:
+      src: /nfs/almalinux
+      dest: /home/almalinux/nfs
+      state: link
