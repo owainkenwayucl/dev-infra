@@ -1,0 +1,23 @@
+- Name: Install cluster packages
+  hosts: all
+  become: true
+  become_user: root
+  - name: Install compilers
+    ansible.builtin.dnf:
+      name:
+      - g++
+      - gfortran
+      - openmpi-devel
+      - openmpi
+      - patch
+      - bzip2
+      - python3-mpi4py-openmpi
+      state: latest
+  - name: Install Slurm
+    ansible.builtin.dnf:
+      name:
+      - slurm
+      - slurm-slurmd
+      - slurm-slurmctld
+      - munge
+      state: latest
