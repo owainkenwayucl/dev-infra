@@ -22,4 +22,14 @@
     ansible.builtin.service:
       name: nfs-server
       enabled: true
-      state: started
+      state: started 
+  - name: Make user directory
+    ansible.builtin.file:
+      path: /nfs/almalinux
+      state: directory
+      owner: almalinux
+  - name: Create home directory sym-link
+    ansible.builtin.file:
+      src: /nfs/almalinux
+      dest: /home/almalinux/nfs
+      state: link
