@@ -9,7 +9,9 @@
     ansible.builtin.fetch:
       src: /home/almalinux/.ssh/id_ed25519
       dest: ./temp_id_ed25519
+      flat: true
   - name: Get public keys
     ansible.builtin.fetch:
       src: /home/almalinux/.ssh/id_ed25519.pub
-      dest: ./temp_id_ed25519.pub
+      dest: ./temp_id_ed25519
+      flat: true
