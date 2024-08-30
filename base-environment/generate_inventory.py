@@ -41,7 +41,7 @@ def generate_inventory():
 if __name__ == "__main__":
 
     ap = argparse.ArgumentParser(
-        description = "Generate a K3s cluster inventory from Terraform.",
+        description = "Generate an inventory from Terraform.",
         prog = __file__
     )
 
