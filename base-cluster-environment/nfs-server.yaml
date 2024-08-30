@@ -16,3 +16,10 @@
       src: exports.j2
       dest:  /etc/exports
       mode: "0644"
+  - name: Run exportfs
+    ansible.builtin.shell: exportfs -a
+  - name: Enable NFS server service
+    ansible.builtin.service:
+      name: nfs-server
+      enabled: true
+      state: started
