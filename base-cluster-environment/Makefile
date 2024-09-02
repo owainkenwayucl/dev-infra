@@ -1,4 +1,4 @@
-tfiles = *.tf *.yaml
+tfiles = *.tf *.yml
 ansiblefiles = *.yaml
 
 default: deploy
