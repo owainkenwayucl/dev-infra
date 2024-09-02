@@ -7,7 +7,7 @@ terraforminit:
 
 buildvms: terraforminit
 	terraform apply
-	sleep 30
+	sleep 60
 	touch buildvms
 
 deploy: buildvms
