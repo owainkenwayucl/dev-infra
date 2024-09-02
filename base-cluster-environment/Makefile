@@ -13,5 +13,6 @@ deploy: buildvms
 
 clean:
 	rm -rf .generated/ terraforminit buildvms deploy
+	terraform destroy
 
 .PHONY: clean 
