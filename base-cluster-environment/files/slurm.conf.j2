@@ -33,5 +33,5 @@ SlurmdDebug=info
 SlurmdLogFile=/var/log/slurm/slurmd.log
 
 # COMPUTE NODES
-NodeName={{ groups["workers"] | map('extract', hostvars,['ansible_default_ipv4', 'address']) | join(',') }} CPUs=2 State=UNKNOWN
+NodeName={{ groups["workers"] | join(',') }} CPUs=2 State=UNKNOWN
 PartitionName=debug Nodes=ALL Default=YES MaxTime=INFINITE State=UP

@@ -22,8 +22,8 @@
       src: /nfs/config/slurm.conf
       dest: /etc/slurm/slurm.conf
       state: link
-#  - name: Start Slurmctld
-#    ansible.builtin.systemd_service:
-#      name: slurmctld
-#      state: started
-#      enabled: true
+  - name: Start Slurmctld
+    ansible.builtin.systemd_service:
+      name: slurmctld
+      state: started
+      enabled: true
