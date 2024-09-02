@@ -1,6 +1,6 @@
 ClusterName=cluster
 
-SlurmctldHost={{groups['mgmtnode'][0]}}
+SlurmctldHost=mgmtnode
 
 MpiDefault=pmix
 ProctrackType=proctrack/cgroup
@@ -33,5 +33,5 @@ SlurmdDebug=info
 SlurmdLogFile=/var/log/slurm/slurmd.log
 
 # COMPUTE NODES
-NodeName={{ groups["workers"] | join(',') }} CPUs=2 State=UNKNOWN
+NodeName=workernode[1-{{ groups["workers"]|count}}] CPUs=2 State=UNKNOWN
 PartitionName=debug Nodes=ALL Default=YES MaxTime=INFINITE State=UP
