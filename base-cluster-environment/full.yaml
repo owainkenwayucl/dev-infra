@@ -10,3 +10,5 @@
 - import_playbook: userfiles.yaml
 - import_playbook: commonkeys.yaml
 - import_playbook: sharecommonkeys.yaml
+- import_playbook: mungekey.yaml
+- import_playbook: sharemungekeys.yaml
