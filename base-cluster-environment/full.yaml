@@ -12,3 +12,6 @@
 - import_playbook: sharecommonkeys.yaml
 - import_playbook: mungekey.yaml
 - import_playbook: sharemungekeys.yaml
+- import_playbook: slurmctl.yaml
+- import_playbook: slurmworker.yaml
+- import_playbook: slurmlogin.yaml
