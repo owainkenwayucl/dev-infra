@@ -9,7 +9,7 @@ terraforminit: $(tfiles)
 
 buildvms: terraforminit Makefile $(tfiles)
 	terraform apply
-	sleep 60
+	sleep 300
 	touch buildvms
 
 deploy: buildvms Makefile $(ansiblefiles)
