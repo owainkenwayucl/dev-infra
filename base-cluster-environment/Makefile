@@ -1,16 +1,18 @@
+tfiles = *.tf *.yaml
+ansiblefiles = *.yaml
 
 default: deploy
 
-terraforminit: 
+terraforminit: tfiles
 	terraform init
 	touch terraforminit
 
-buildvms: terraforminit Makefile
+buildvms: terraforminit Makefile tfiles
 	terraform apply
 	sleep 60
 	touch buildvms
 
-deploy: buildvms Makefile
+deploy: buildvms Makefile ansiblefiles
 	ansible-playbook -i generate_inventory.py full.yaml
 	touch deploy
 
