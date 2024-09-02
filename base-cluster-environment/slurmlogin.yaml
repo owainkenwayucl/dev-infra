@@ -1,4 +1,4 @@
-- name: Set up slurm controller
+- name: Set up slurm login node
   hosts: loginnode
   become: true
   become_user: root
