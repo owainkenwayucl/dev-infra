@@ -34,7 +34,7 @@ resource "harvester_virtualmachine" "loginvm" {
   memory = "8Gi"
 
   efi         = true
-  secure_boot = true
+  secure_boot = false
 
   run_strategy    = "RerunOnFailure"
   hostname        = "${var.username}-login-${format("%02d", count.index + 1)}"
@@ -78,7 +78,7 @@ resource "harvester_virtualmachine" "mgmtvm" {
   memory = "8Gi"
 
   efi         = true
-  secure_boot = true
+  secure_boot = false
 
   run_strategy    = "RerunOnFailure"
   hostname        = "${var.username}-mgmt-${format("%02d", count.index + 1)}"
@@ -122,7 +122,7 @@ resource "harvester_virtualmachine" "workervm" {
   memory = "8Gi"
 
   efi         = true
-  secure_boot = true
+  secure_boot = false
 
   run_strategy    = "RerunOnFailure"
   hostname        = "${var.username}-worker-${format("%02d", count.index + 1)}"

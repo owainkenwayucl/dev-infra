@@ -29,12 +29,12 @@
   - name: fix manangement conf
     ansible.builtin.replace:
       path: /etc/beegfs/beegfs-mgmtd.conf
-      regexp: 'connAuthFile[ \t]*='
+      regexp: 'connAuthFile[ \t]+='
       replace: 'connAuthFile=/etc/beegfs/connauthfile'
   - name: fix metadata conf
     ansible.builtin.replace:
       path: /etc/beegfs/beegfs-meta.conf
-      regexp: 'connAuthFile[ \t]*='
+      regexp: 'connAuthFile[ \t]+='
       replace: 'connAuthFile=/etc/beegfs/connauthfile'
   - name: start mgmtd
     ansible.builtin.systemd_service:
