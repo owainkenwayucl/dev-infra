@@ -19,3 +19,4 @@
 - import_playbook: beegfs-host.yaml
 - import_playbook: beegfs-storage.yaml
 - import_playbook: beegfs-client.yaml
+- import_playbook: beegfs-links.yaml
