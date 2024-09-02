@@ -5,12 +5,12 @@ terraforminit:
 	terraform init
 	touch terraforminit
 
-buildvms: terraforminit
+buildvms: terraforminit Makefile
 	terraform apply
 	sleep 60
 	touch buildvms
 
-deploy: buildvms
+deploy: buildvms Makefile
 	ansible-playbook -i generate_inventory.py full.yaml
 	touch deploy
 
