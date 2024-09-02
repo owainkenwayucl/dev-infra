@@ -1,11 +1,11 @@
-- name: Install slurm worker daemons
-  hosts: workers
+- name: Set up slurm controller
+  hosts: mgmtnode
   become: true
   become_user: root
   tasks: 
   - name: Set hostname
     ansible.builtin.hostname:
-      name: workernode{{lookup('ansible.utils.index_of', groups["workers"], 'eq', inventory_hostname) + 1 }}
+      name: loginnode
       use: systemd
   - name: Delete default slurm config
     ansible.builtin.file:
@@ -16,8 +16,3 @@
       src: /nfs/config/slurm.conf
       dest: /etc/slurm/slurm.conf
       state: link
-  - name: Start Slurmd
-    ansible.builtin.systemd_service:
-      name: slurmd
-      state: started
-      enabled: true
