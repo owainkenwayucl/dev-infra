@@ -22,6 +22,7 @@
         - htop
         - git
         - ansible
+        - make
       state: latest
   - name: Install Python 3
     ansible.builtin.dnf:
