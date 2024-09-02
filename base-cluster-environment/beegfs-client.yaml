@@ -26,12 +26,12 @@
   - name: fix helperconf
     ansible.builtin.replace:
       path: /etc/beegfs/beegfs-helperd.conf
-      regexp: 'connAuthFile[ \t]*='
+      regexp: 'connAuthFile[ \t]+='
       replace: 'connAuthFile=/etc/beegfs/connauthfile'
   - name: fix client conf
     ansible.builtin.replace:
       path: /etc/beegfs/beegfs-client.conf
-      regexp: 'connAuthFile[ \t]*='
+      regexp: 'connAuthFile[ \t]+='
       replace: 'connAuthFile=/etc/beegfs/connauthfile'
   - name: start helperd
     ansible.builtin.systemd_service:
