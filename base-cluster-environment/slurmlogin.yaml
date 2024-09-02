@@ -1,5 +1,5 @@
 - name: Set up slurm controller
-  hosts: mgmtnode
+  hosts: loginnode
   become: true
   become_user: root
   tasks: 
