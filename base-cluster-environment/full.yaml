@@ -15,3 +15,6 @@
 - import_playbook: slurmctl.yaml
 - import_playbook: slurmworker.yaml
 - import_playbook: slurmlogin.yaml
+- import_playbook: beegfs-packages.yaml
+- import_playbook: beegfs-host.yaml
+- import_playbook: beegfs-storage.yaml
