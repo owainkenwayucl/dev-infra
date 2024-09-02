@@ -4,7 +4,7 @@
   become_user: root
   tasks:
   - name: Generate connauthfile
-    local_action: ansible.builtin.command: dd if=/dev/random of=./.generated/connauthfile bs=128 count=1
+    local_action: ansible.builtin.command dd if=/dev/random of=./.generated/connauthfile bs=128 count=1
   - name: Create management location
     ansible.builtin.file:
       path: /beegfs_data/mgmt
