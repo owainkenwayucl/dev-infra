@@ -5,6 +5,6 @@
   tasks:
   - name: Create exports file
     ansible.builtin.blockinfile:
-      block: "{{ lookup('template', 'hostfile.j2') }}"
+      block: "{{ lookup('template', 'files/hostfile.j2') }}"
       dest:  /etc/hosts
       insertafter: "EOF"

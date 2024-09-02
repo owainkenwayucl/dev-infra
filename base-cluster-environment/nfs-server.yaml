@@ -13,7 +13,7 @@
       state: directory
   - name: Create exports file
     template:
-      src: exports.j2
+      src: files/exports.j2
       dest:  /etc/exports
       mode: "0644"
   - name: Run exportfs

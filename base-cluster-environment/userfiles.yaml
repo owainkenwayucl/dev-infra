@@ -3,5 +3,5 @@
   tasks: 
   - name: ssh config
     ansible.builtin.copy:
-      src: ./ssh_config
+      src: ./files/ssh_config
       dest: /home/almalinux/.ssh/config
