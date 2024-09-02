@@ -19,16 +19,11 @@
       mode: 400
   - name: Mounts file
     ansible.builtin.copy:
-      src: beegfs-mounts.conf
+      src: files/beegfs-mounts.conf
       dest: /etc/beegfs/beegfs-mounts.conf
       owner: root
       group: root
   - name: fix helperconf
-    ansible.builtin.replace:
-      path: /etc/beegfs/beegfs-helperd.conf
-      regexp: 'connAuthFile[ \t]*='
-      replace: 'connAuthFile=/etc/beegfs/connauthfile'
-  - name: fix helperconf 2
     ansible.builtin.replace:
       path: /etc/beegfs/beegfs-helperd.conf
       regexp: 'connAuthFile[ \t]*='
