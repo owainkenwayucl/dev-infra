@@ -1,4 +1,6 @@
 
+default: deploy
+
 terraforminit: 
 	terraform init
 	touch terraforminit
