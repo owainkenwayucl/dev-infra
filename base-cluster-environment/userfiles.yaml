@@ -5,6 +5,10 @@
     ansible.builtin.copy:
       src: ./files/ssh_config
       dest: /home/almalinux/.ssh/config
+  - name: OpenMPI Config
+    ansible.builtin.copy:
+      src: ./files/mca-params.conf
+      dest: /home/almalinux/.openmpi/mca-params.conf
   - name: Add OpenMPI to path
     ansible.builtin.lineinfile:
       insertafter: "EOF"
