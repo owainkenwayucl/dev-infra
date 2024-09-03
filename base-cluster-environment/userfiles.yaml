@@ -5,3 +5,8 @@
     ansible.builtin.copy:
       src: ./files/ssh_config
       dest: /home/almalinux/.ssh/config
+  - name: Add OpenMPI to path
+    ansilbe.builtin.lineinfile:
+      insertafter: "EOF"
+      line: "export PATH=/usr/lib64/openmpi/bin:$PATH"
+      path: /home/almalinux/.bashrc
