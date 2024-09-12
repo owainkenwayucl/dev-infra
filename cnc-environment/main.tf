@@ -25,7 +25,7 @@ resource "harvester_virtualmachine" "vm" {
   
   count = var.vm_count
 
-  name                 = "${var.username}-cnc-${format("%02d", count.index + 1)}-${random_id.secret.hex}"
+  name                 = "${var.cncname}"
   namespace            = var.namespace
   restart_after_update = true
 
@@ -38,7 +38,7 @@ resource "harvester_virtualmachine" "vm" {
   secure_boot = true
 
   run_strategy    = "RerunOnFailure"
-  hostname        = "${var.username}-cnc-${format("%02d", count.index + 1)}-${random_id.secret.hex}"
+  hostname        = "${var.cncname}"
   reserved_memory = "100Mi"
   machine_type    = "q35"
 

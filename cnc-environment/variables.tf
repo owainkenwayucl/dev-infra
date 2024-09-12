@@ -18,6 +18,10 @@ variable username {
 #  default = ""
 }
 
+variable cncname {
+  type = string
+#  default = "cnc"
+}
 
 variable vm_count {
   type    = number
