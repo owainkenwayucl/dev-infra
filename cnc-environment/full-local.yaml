@@ -4,3 +4,6 @@
 - import_playbook: local.yaml
 - import_playbook: tools.yaml
 - import_playbook: terraform.yaml
+- import_playbook: docker.yaml
+- import_playbook: linuxbrew.yaml
+- import_playbook: brew-kubetools.yaml
