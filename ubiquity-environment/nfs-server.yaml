@@ -1,5 +1,5 @@
 - name: NFS Server Configuration
-  hosts: mgmtnode
+  hosts: servicenode
   become: true
   become_user: root
   tasks:
