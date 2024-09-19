@@ -1,0 +1,7 @@
+- name: Set up the first virtual network
+  hosts: all
+  become: true
+  become_user: root
+  tasks:
+  - name: configure alias
+    ansible.builtin.shell: "ifconfig eth0:0 192.168.215.{{lookup('ansible.utils.index_of', groups["all"], 'eq', inventory_hostname) + 1}}"
