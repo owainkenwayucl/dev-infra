@@ -30,7 +30,7 @@ resource "harvester_virtualmachine" "servicevm" {
 
   description = "Cluster Login Node"
 
-  cpu    = 2 
+  cpu    = 1 
   memory = "8Gi"
 
   efi         = true
@@ -118,7 +118,7 @@ resource "harvester_virtualmachine" "workervm" {
 
   description = "Cluster Compute Node"
 
-  cpu    = 2
+  cpu    = 1
   memory = "8Gi"
 
   efi         = true
