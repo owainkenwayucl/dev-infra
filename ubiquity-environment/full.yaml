@@ -11,3 +11,4 @@
 - import_playbook: commonkeys.yaml
 - import_playbook: sharecommonkeys.yaml
 - import_playbook: setuprootkey.yaml
+- import_playbook: network1.yaml
