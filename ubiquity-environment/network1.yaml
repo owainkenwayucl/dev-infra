@@ -4,8 +4,10 @@
   become_user: root
   tasks:
   - name: configure alias 1 192.168.215.x
-    ansible.builtin.shell: "ifconfig eth0:0 192.168.215.{{lookup('ansible.utils.index_of', groups['all'], 'eq', inventory_hostname) + 1}}"
+    ansible.builtin.shell: "ifconfig eth0:0 192.168.215.{{lookup('ansible.utils.index_of', groups['all'], 'eq', inventory_hostname) + 1}} up"
   - name: configure alias 2  192.168.216.x
-    ansible.builtin.shell: "ifconfig eth0:1 192.168.216.{{lookup('ansible.utils.index_of', groups['all'], 'eq', inventory_hostname) + 1}}"
+    ansible.builtin.shell: "ifconfig eth0:1 192.168.216.{{lookup('ansible.utils.index_of', groups['all'], 'eq', inventory_hostname) + 1}} up"
   - name: configure alias 3 192.168.217.x
-    ansible.builtin.shell: "ifconfig eth0:2 192.168.217.{{lookup('ansible.utils.index_of', groups['all'], 'eq', inventory_hostname) + 1}}"
+    ansible.builtin.shell: "ifconfig eth0:2 192.168.217.{{lookup('ansible.utils.index_of', groups['all'], 'eq', inventory_hostname) + 1}} up"
+  - name: configure main card (fix rancher display bug))
+    ansible.builtin.shell: "ifconfig eth0 {{ inventory_hostname }} up"
