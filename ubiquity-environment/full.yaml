@@ -4,7 +4,7 @@
 - import_playbook: local.yaml
 - import_playbook: hostnameservicenode.yaml
 - import_playbook: hostnamemgmtnodes.yaml
-- import_playbook: hostworkers.yaml
+- import_playbook: hostnameworkers.yaml
 - import_playbook: reboot.yaml
 - import_playbook: tools.yaml
 - import_playbook: nfs-server.yaml
