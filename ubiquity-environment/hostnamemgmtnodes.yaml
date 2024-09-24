@@ -5,5 +5,5 @@
   tasks: 
   - name: Set hostname
     ansible.builtin.hostname:
-      name: cp{{lookup('ansible.utils.index_of', groups["mgmtnodes"], 'eq', inventory_hostname) + 1 }}
+      name: cp{{lookup('ansible.utils.index_of', groups["mgmtnodes"], 'eq', inventory_hostname) + 1 }}.cluster.nip.io
       use: systemd
