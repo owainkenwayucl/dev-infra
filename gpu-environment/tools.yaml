@@ -23,6 +23,8 @@
         - git
         - ansible
         - make
+        - wget
+        - unzip
       state: latest
   - name: Install Python 3
     ansible.builtin.dnf:
@@ -30,4 +32,16 @@
         - python3-devel
         - python3-pip
         - python3-virtualenv
+      state: latest
+  - name: Install compilers
+    ansible.builtin.dnf:
+      name:
+      - g++
+      - gfortran
+      - openmpi-devel
+      - openmpi
+      - patch
+      - bzip2
+      - python3-mpi4py-openmpi
+      - make
       state: latest
