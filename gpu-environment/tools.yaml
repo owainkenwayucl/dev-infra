@@ -25,6 +25,7 @@
         - make
         - wget
         - unzip
+        - links
       state: latest
   - name: Install Python 3
     ansible.builtin.dnf:
