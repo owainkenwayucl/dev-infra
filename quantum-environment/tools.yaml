@@ -41,4 +41,6 @@
       - bzip2
       - python3-mpi4py-openmpi
       - make
+      - rust
+      - cargo
       state: latest
