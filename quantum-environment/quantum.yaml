@@ -15,6 +15,7 @@
     ansible.builtin.copy:
       src: qatmagics.sh
       dest: "/home/almalinux/qatmagics.sh"
+      mode: 0700
   - name: Run qat magics script
     ansible.builtin.shell: ~/qatmagics.sh
   - name: Clone quantum utils repo
