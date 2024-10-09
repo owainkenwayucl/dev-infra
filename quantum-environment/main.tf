@@ -31,7 +31,7 @@ resource "harvester_virtualmachine" "vm" {
 
   description = "Base VM"
 
-  cpu    = 8
+  cpu    = 4
   memory = "32Gi"
 
   efi         = true
