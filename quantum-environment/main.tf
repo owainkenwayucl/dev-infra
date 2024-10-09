@@ -25,7 +25,7 @@ resource "harvester_virtualmachine" "vm" {
   
   count = var.vm_count
 
-  name                 = "${var.username}-quantume-${format("%02d", count.index + 1)}-${random_id.secret.hex}"
+  name                 = "${var.username}-quantum-${format("%02d", count.index + 1)}-${random_id.secret.hex}"
   namespace            = var.namespace
   restart_after_update = true
 
