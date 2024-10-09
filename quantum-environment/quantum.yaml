@@ -44,7 +44,6 @@
       src: /home/almalinux/utils/qlm_math.py
       path: /home/almalinux/quantum/lib/python3.12/site-packages/qlm_math.py
       state: link
-        state: link
   - name: sym-link qsharp_utils -> into venv
     ansible.builtin.file:
       src: /home/almalinux/utils/qsharp_utils.py
