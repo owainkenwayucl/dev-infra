@@ -1,0 +1,11 @@
+jupyterlab
+numpy<2
+qiskit
+qiskit[visualization]
+amazon-braket-sdk
+Wand
+qpic
+myqlm
+cirq
+qsharp
+azure-quantum[qiskit, cirq]

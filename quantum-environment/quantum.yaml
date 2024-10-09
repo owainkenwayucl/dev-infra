@@ -1,0 +1,57 @@
+- name: Set up quantum tools
+  hosts: all
+  tasks: 
+  - name: Copy requirements.txt
+    ansible.builtin.copy:
+      src: requirements.txt
+      dest: "/home/almalinux/requirements.txt"
+  - name: Set up virtualenv
+    ansible.builtin.pip:
+      requirements: "/home/almalinux/requirements.txt"
+      state: latest
+      virtualenv_python: python3.12
+      virtualenv: "/home/almalinux/quantum"
+  - name: Copy qat magics script
+    ansible.builtin.copy:
+      src: qatmagics.sh
+      dest: "/home/almalinux/qatmagics.sh"
+  - name: Run qat magics script
+    ansible.builtin.shell: ~/qatmagics.sh
+  - name: Clone quantum utils repo
+    ansible.builtin.git:
+      repo: "https://github.com/owainkenwayucl/quantumutils.git"
+      dest: "/home/almalinux/utils"
+  - name: Clone quantum experiments repo
+    ansible.builtin.git:
+      repo: "https://github.com/owainkenwayucl/quantumexperiments.git"
+      dest: "/home/almalinux/experiments"
+  - name: Create ~/bin
+    ansible.builtin.file:
+      path: /home/almalinux/bin
+      state: directory
+  - name: sym-link qc into ~/bin
+    ansible.builtin.file:
+      src: /home/almalinux/utils/build_tools/qc
+      path: /home/almalinux/bin/qc
+      state: link
+  - name: sym-link qc -> qc.py
+    ansible.builtin.file:
+      src: /home/almalinux/utils/build_tools/qc
+      path: /home/almalinux/quantum/lib/python3.12/site-packages/qc.py
+      state: link
+  - name: sym-link qlm_math -> into venv
+    ansible.builtin.file:
+      src: /home/almalinux/utils/qlm_math.py
+      path: /home/almalinux/quantum/lib/python3.12/site-packages/qlm_math.py
+      state: link
+        state: link
+  - name: sym-link qsharp_utils -> into venv
+    ansible.builtin.file:
+      src: /home/almalinux/utils/qsharp_utils.py
+      path: /home/almalinux/quantum/lib/python3.12/site-packages/qsharp_utils.py
+      state: link
+  - name: sym-link graphing_tools -> into venv
+    ansible.builtin.file:
+      src: /home/almalinux/utils/graphing_tools.py
+      path: /home/almalinux/quantum/lib/python3.12/site-packages/graphing_tools.py
+      state: link
