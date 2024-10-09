@@ -19,7 +19,6 @@
         - make
         - wget
         - unzip
-        - links
         - ImageMagick
         - ImageMagick-devel
       state: latest
