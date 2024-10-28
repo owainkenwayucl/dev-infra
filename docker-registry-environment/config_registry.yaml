@@ -1,5 +1,7 @@
 - name: Configure Docker registry
   hosts: all
+  become: true
+  become_user: root
   tasks: 
   - name: Copy TLS generation stub
     ansible.builtin.copy:
