@@ -26,7 +26,5 @@
     ansible.builtin.file:
       path: /home/almalinux/auth
       state: directory
-  - name: Create htpasswd file
-    ansible.builtin.shell: "docker run --rm --entrypoint htpasswd httpd:2 -Bbn regadmin {{lookup('ansible.builtin.password', './.registrypas', length=16)}} > /home/almalinux/auth/htpasswd"
-  - name: Start registry - rw
+  - name: Start pullthrough cache
     ansible.builtin.shell: 'docker run -d --restart=always --name registry-pullthrough -v /home/almalinux/certs:/certs -e REGISTRY_HTTP_ADDR=0.0.0.0:4000 -e REGISTRY_HTTP_TLS_CERTIFICATE=/certs/domain.crt -e REGISTRY_HTTP_TLS_KEY=/certs/domain.key -p 4000:4000 -v /home/almalinux/config/config.yaml:/etc/docker/registry/config.yml -v /home/almalinux/registry:/var/lib/registry registry:2'
