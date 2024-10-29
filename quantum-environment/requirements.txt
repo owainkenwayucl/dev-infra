@@ -2,6 +2,7 @@ jupyterlab
 numpy<2
 qiskit
 qiskit[visualization]
+qiskit-aer
 amazon-braket-sdk
 Wand
 qpic
