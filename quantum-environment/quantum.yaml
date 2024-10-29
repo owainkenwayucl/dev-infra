@@ -8,9 +8,9 @@
   - name: Set up virtualenv
     ansible.builtin.shell: python3.12 -m venv /home/almalinux/quantum
   - name: Update base packages
-    ansible.builtin.shell: /home/almalinux/quantum/python3.12 -m pip install --upgrade pip wheel setuptools
+    ansible.builtin.shell: /home/almalinux/quantum/bin/python3.12 -m pip install --upgrade pip wheel setuptools
   - name: Install quantum toolchain
-    ansible.builtin.shell: /home/almalinux/quantum/python3.12 -m pip install -r requirements.txt
+    ansible.builtin.shell: /home/almalinux/quantum/bin/python3.12 -m pip install -r requirements.txt
   - name: Copy qat magics script
     ansible.builtin.copy:
       src: qatmagics.sh
