@@ -4,6 +4,6 @@
   become_user: root
   tasks: 
   - name: Set local DNS server
-    ansible.builtin.shell: "nmcli con mod 'System eth0' ipv4.dns {{groups['servicenode']}}"
+    ansible.builtin.shell: "nmcli con mod 'System eth0' ipv4.dns {{groups['servicenode'][0]}}"
   - name: Restart interface
     ansible.builtin.shell: "nmcli con down 'System eth0' && nmcli con up 'System eth0'"
