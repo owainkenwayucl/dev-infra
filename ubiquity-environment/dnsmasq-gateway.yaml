@@ -15,7 +15,7 @@
   - name: Modify DNSMasq config (add DS4ENG DNS)
     ansible.builtin.lineinfile:
       dest: /etc/dnsmasq.conf
-      line: "server=10.134.91"
+      line: "server=10.134.9.1"
   - name: Modify DNSMasq config (run on eth0)
     ansible.builtin.lineinfile:
       dest: /etc/dnsmasq.conf
