@@ -16,4 +16,4 @@
 - import_playbook: setuprootkey.yaml
 - import_playbook: network1.yaml
 - import_playbook: dnsmasq-gateway.yaml
-- import_playbook: dnsmasw-nodes.yaml
+- import_playbook: dnsmasq-nodes.yaml
