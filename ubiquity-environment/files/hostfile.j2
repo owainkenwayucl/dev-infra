@@ -1,9 +1,9 @@
 {% for node in groups["workers"] %}
-{{node}} worker{{ lookup('ansible.utils.index_of', groups["workers"], 'eq', node) + 1 }} worker{{ lookup('ansible.utils.index_of', groups["workers"], 'eq', node) + 1 }}.cluster worker{{ lookup('ansible.utils.index_of', groups["workers"], 'eq', node) + 1 }}.cluster.nip.io
+{{node}} worker{{ lookup('ansible.utils.index_of', groups["workers"], 'eq', node) + 1 }} worker{{ lookup('ansible.utils.index_of', groups["workers"], 'eq', node) + 1 }}.cluster worker{{ lookup('ansible.utils.index_of', groups["workers"], 'eq', node) + 1 }}.ubiquity.condenser.arc.ucl.ac.uk
 {% endfor %}
 {% for node in groups["servicenode"] %}
-{{node}} servicenode
+{{node}} servicenode.ubiquity.condenser.arc.ucl.ac.uk
 {% endfor %}
 {% for node in groups["mgmtnodes"] %}
-{{node}} cp{{ lookup('ansible.utils.index_of', groups["mgmtnodes"], 'eq', node) + 1 }} cp{{ lookup('ansible.utils.index_of', groups["mgmtnodes"], 'eq', node) + 1 }}.cluster cp{{ lookup('ansible.utils.index_of', groups["mgmtnodes"], 'eq', node) + 1 }}.cluster.nip.io
+{{node}} cp{{ lookup('ansible.utils.index_of', groups["mgmtnodes"], 'eq', node) + 1 }} cp{{ lookup('ansible.utils.index_of', groups["mgmtnodes"], 'eq', node) + 1 }}.cluster cp{{ lookup('ansible.utils.index_of', groups["mgmtnodes"], 'eq', node) + 1 }}.ubiquity.condenser.arc.ucl.ac.uk
 {% endfor %}

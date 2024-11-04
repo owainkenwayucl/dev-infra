@@ -5,5 +5,5 @@
   tasks: 
   - name: Set hostname
     ansible.builtin.hostname:
-      name: servicenode
+      name: servicenode.ubiquity.condenser.arc.ucl.ac.uk
       use: systemd
