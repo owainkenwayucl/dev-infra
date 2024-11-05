@@ -14,7 +14,7 @@
 - import_playbook: commonkeys.yaml
 - import_playbook: sharecommonkeys.yaml
 - import_playbook: setuprootkey.yaml
-- import_playbook: network1.yaml
 - import_playbook: dnsmasq-gateway.yaml
 - import_playbook: dnsmasq-nodes.yaml
+- import_playbook: network1.yaml
 - import_playbook: servicenodetools.yaml
