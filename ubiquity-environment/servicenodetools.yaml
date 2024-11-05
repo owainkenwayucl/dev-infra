@@ -1,0 +1,9 @@
+- name: Install packages needed on the service node.
+  hosts: servicenode
+  become: true
+  become_user: root
+  tasks: 
+  - name: Install tools needed on the service node
+    ansible.builtin.dnf:
+      name:
+        - podman
