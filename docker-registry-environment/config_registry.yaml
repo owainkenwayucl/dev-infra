@@ -16,7 +16,7 @@
       state: directory
   - name: Create cache location
     ansible.builtin.file:
-      path: /home/almalinux/dockercache
+      path: /home/almalinux/cache
       state: directory
   - name: Create authentication location
     ansible.builtin.file:
