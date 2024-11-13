@@ -66,14 +66,14 @@ resource "harvester_virtualmachine" "vm" {
     condenser_ingress_reg_port = 6000
     condenser_ingress_reg_protocol = "https"
     condenser_ingress_reg_nginx_proxy-body-size = "100000m"
-    condenser_ingress_cons_hostname = "registry-rw"
-    condenser_ingress_cons_port = 5000
-    condenser_ingress_cons_protocol = "https"
-    condenser_ingress_cons_nginx_proxy-body-size = "100000m"
-    condenser_ingress_cache_hostname = "dockerhub"
-    condenser_ingress_cache_port = 4000
-    condenser_ingress_cache_protocol = "https"
-    condenser_ingress_cache_nginx_proxy-body-size = "100000m"
+  #  condenser_ingress_cons_hostname = "registry-rw"
+  #  condenser_ingress_cons_port = 5000
+  #  condenser_ingress_cons_protocol = "https"
+  #  condenser_ingress_cons_nginx_proxy-body-size = "100000m"
+  #  condenser_ingress_cache_hostname = "dockerhub"
+  #  condenser_ingress_cache_port = 4000
+  #  condenser_ingress_cache_protocol = "https"
+  #  condenser_ingress_cache_nginx_proxy-body-size = "100000m"
   }
 
   cloudinit {
