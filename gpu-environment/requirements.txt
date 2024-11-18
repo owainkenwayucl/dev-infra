@@ -18,3 +18,4 @@ onnx
 onnxscript
 onnxruntime
 lightning
+xformers
