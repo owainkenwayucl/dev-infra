@@ -16,7 +16,7 @@
       url: https://repo.almalinux.org/elevate/RPM-GPG-KEY-ELevate
       dest: /root/RPM-GPG-KEY-ELevate
   - name: Import ELevate Key
-    ansible.builtin.shell: rpm --import /root/RPM-GPG-KEY-ELevate/RPM-GPG-KEY-ELevate
+    ansible.builtin.shell: rpm --import /root/RPM-GPG-KEY-ELevate
   - name: Install ELevate
     ansible.builtin.dnf:
       name: 
