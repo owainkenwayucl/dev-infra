@@ -12,6 +12,7 @@
       url: https://repo.almalinux.org/elevate/testing/elevate-ng-el9.repo
       dest: /etc/yum.repos.d/elevate-ng-el9.repo
   - name: Get ELevate key
+  ansible.builtin.get_url:
       url: https://repo.almalinux.org/elevate/RPM-GPG-KEY-ELevate
       dest: /root/RPM-GPG-KEY-ELevate
   - name: Import ELevate Key
