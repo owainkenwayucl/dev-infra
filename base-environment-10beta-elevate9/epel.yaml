@@ -1,0 +1,21 @@
+- name: Set up EPEL (epel-release package missing in Lion Cub)
+  become: true
+  become_user: root
+  hosts: all
+  tasks:
+    # Anything where ansible uses ansible.builtin.url is broken on 10-kitten with ansible from EPEL on 9. 
+    #  - name: Add EPEL release
+    #    ansible.builtin.dnf:
+    #      name: "https://dl.fedoraproject.org/pub/epel/epel-release-latest-10.noarch.rpm"
+    #      state: present
+  - name: Install wget
+    ansible.builtin.dnf:
+      name: wget
+      state: latest
+  - name: Get EPEL RPM
+    ansible.builtin.shell: wget --output-document=/root/epel.rpm https://dl.fedoraproject.org/pub/epel/epel-release-latest-10.noarch.rpm
+  - name: Install EPEL RPM
+    ansible.builtin.shell: dnf install -y /root/epel.rpm
+  - name: Enable CRB
+    ansible.builtin.shell: /usr/bin/crb enable
+
