@@ -25,11 +25,11 @@ resource "harvester_virtualmachine" "vm" {
   
   count = var.vm_count
 
-  name                 = "${var.username}-base-${format("%02d", count.index + 1)}-${random_id.secret.hex}"
+  name                 = "${var.username}-jupyterhub-${format("%02d", count.index + 1)}-${random_id.secret.hex}"
   namespace            = var.namespace
   restart_after_update = true
 
-  description = "Base VM"
+  description = "Jupyterhub VM"
 
   cpu    = 2
   memory = "16Gi"
@@ -38,7 +38,7 @@ resource "harvester_virtualmachine" "vm" {
   secure_boot = true
 
   run_strategy    = "RerunOnFailure"
-  hostname        = "${var.username}-base-${format("%02d", count.index + 1)}-${random_id.secret.hex}"
+  hostname        = "${var.username}-jupyterhub-${format("%02d", count.index + 1)}-${random_id.secret.hex}"
   reserved_memory = "100Mi"
   machine_type    = "q35"
 
@@ -58,6 +58,13 @@ resource "harvester_virtualmachine" "vm" {
 
     image       = data.harvester_image.img.id
     auto_delete = true
+  }
+  tags = {
+    condenser_ingress_isEnabled = true
+    condenser_ingress_jh_hostname = "${var.username}-jh"
+    condenser_ingress_jh_port = 443
+    condenser_ingress_jh_protocol = "https"
+    condenser_ingress_jh_nginx_proxy-body-size = "100000m"
   }
 
   cloudinit {
