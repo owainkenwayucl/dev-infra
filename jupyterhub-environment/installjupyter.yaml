@@ -14,4 +14,4 @@
       requirements: "/root/requirements.txt"
       state: latest
       virtualenv_python: python3.12
-      virtualenv: "/opt/jupyterhub
+      virtualenv: "/opt/jupyterhub"
