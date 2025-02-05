@@ -1,0 +1,11 @@
+- name: node.js and npm
+  hosts: all
+  become: true
+  become_user: root
+  tasks: 
+  - name: node.js and npm
+    ansible.builtin.dnf:
+      name:
+        - nodejs
+        - npm
+      state: latest
