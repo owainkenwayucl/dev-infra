@@ -15,3 +15,11 @@
       state: latest
       virtualenv_python: python3.12
       virtualenv: "/opt/jupyterhub"
+  - name: Copy config file
+    ansible.builtin.copy:
+      src: "files/jupyterhub_config.py"
+      dest: "/root/jupyterhub_config.py"
+  - name: Copy wrapper
+    ansible.builtin.copy:
+      src: "files/start_jh.sh"
+      dest: "/root/start_jh.sh"
