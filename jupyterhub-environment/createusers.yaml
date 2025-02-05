@@ -1,0 +1,34 @@
+- name: Create users for the Jupyterhub instance.
+  hosts: all
+  vars:
+    userlist: ["course1", "course2"]
+    adminlist: ["admin1"]
+  become: true
+  become_user: root
+  tasks: 
+  - name: Add GPU group
+    ansible.builtin.group:
+      name: gpu
+      state: present
+  - name: Add Course group
+    ansible.builtin.group:
+      name: course
+      state: present
+  - name: Add Admin group
+    ansible.builtin.group:
+      name: courseadmin
+      state: present
+  - name: Add users
+    ansible.builtin.user:
+      name: "{{ item }}"
+      state: present
+      password: "{{ lookup('ansible.builtin.password', 'auth/{{ item }}.pass', length=16) | password_hash('sha512', lookup('ansible.builtin.password', 'auth/{{ item }}.salt', chars=['ascii_letters'], length=8))}}"
+      groups: ["course", "gpu"]
+    loop: "{{ userlist }}"
+  - name: Add admin users
+    ansible.builtin.user:
+      name: "{{ item }}"
+      state: present
+      password: "{{ lookup('ansible.builtin.password', 'auth/{{ item }}.pass', length=16) | password_hash('sha512', lookup('ansible.builtin.password', 'auth/{{ item }}.salt', chars=['ascii_letters'], length=8))}}"
+      groups: ["course", "gpu", "courseadmin"]
+    loop: "{{ adminlist }}"
