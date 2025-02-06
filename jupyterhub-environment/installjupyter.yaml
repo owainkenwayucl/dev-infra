@@ -8,18 +8,21 @@
   - name: Copy Requirements
     ansible.builtin.copy:
       src: "files/requirements.txt"
-      dest: "/root/requirements.txt"
+      dest: "/opt/requirements.txt"
   - name: Install Python bits
     ansible.builtin.pip:
-      requirements: "/root/requirements.txt"
+      requirements: "/opt/requirements.txt"
       state: latest
       virtualenv_python: python3.12
       virtualenv: "/opt/jupyterhub"
   - name: Copy config file
     ansible.builtin.copy:
       src: "files/jupyterhub_config.py"
-      dest: "/root/jupyterhub_config.py"
+      dest: "/home/jhrole/jupyterhub_config.py"
+      owner: jhrole
   - name: Copy wrapper
     ansible.builtin.copy:
       src: "files/start_jh.sh"
-      dest: "/root/start_jh.sh"
+      dest: "/home/jhrole/start_jh.sh"
+      owner: jhrole
+      mode: "0750"

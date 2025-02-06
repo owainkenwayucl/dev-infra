@@ -62,7 +62,7 @@ resource "harvester_virtualmachine" "vm" {
   tags = {
     condenser_ingress_isEnabled = true
     condenser_ingress_jh_hostname = "${var.username}-jh"
-    condenser_ingress_jh_port = 443
+    condenser_ingress_jh_port = 8000
     condenser_ingress_jh_protocol = "https"
     condenser_ingress_jh_nginx_proxy-body-size = "100000m"
   }
