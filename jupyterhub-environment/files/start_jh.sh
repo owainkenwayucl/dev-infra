@@ -2,4 +2,4 @@
 
 source /opt/jupyterhub/bin/activate
 
-jupyterhub -f /root/jupyterhub_config.py 
+jupyterhub -f /home/jhrole/jupyterhub_config.py --JupyterHub.spawner_class=sudospawner.SudoSpawner
