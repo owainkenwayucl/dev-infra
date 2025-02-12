@@ -1,15 +1,13 @@
 - name: Create users for the Jupyterhub instance.
   hosts: all
   vars:
-    userlist: ["course1", "course2"]
-    adminlist: ["admin1"]
+    userlist1: ["course1", "course2", "course3", "course4", "course5", "course6", "course7", "course8", "course9", "course0"]
+    userlist2: ["course11", "course12", "course13", "course14", "course15", "course16", "course17", "course18", "course19", "course10"]
+    userlist3: ["course21", "course22", "course23", "course24", "course25", "course26", "course27", "course28", "course29", "course20"]
+    adminlist: ["admin1","admin2","admin2","admin3","admin4","admin5","admin6","admin7","admin8"]
   become: true
   become_user: root
   tasks: 
-  - name: Add GPU group
-    ansible.builtin.group:
-      name: gpu
-      state: present
   - name: Add Course group
     ansible.builtin.group:
       name: course
@@ -18,17 +16,35 @@
     ansible.builtin.group:
       name: courseadmin
       state: present
-  - name: Add users
+  - name: Add users (1)
     ansible.builtin.user:
       name: "{{ item }}"
       state: present
+      home: "/data2/{{ item }}"
       password: "{{ lookup('ansible.builtin.password', 'auth/{{ item }}.pass', length=16) | password_hash('sha512', lookup('ansible.builtin.password', 'auth/{{ item }}.salt', chars=['ascii_letters'], length=8))}}"
-      groups: ["course", "gpu"]
-    loop: "{{ userlist }}"
+      groups: ["course", "video", "render"]
+    loop: "{{ userlist1 }}"
+  - name: Add users (2)
+    ansible.builtin.user:
+      name: "{{ item }}"
+      state: present
+      home: "/data3/{{ item }}"
+      password: "{{ lookup('ansible.builtin.password', 'auth/{{ item }}.pass', length=16) | password_hash('sha512', lookup('ansible.builtin.password', 'auth/{{ item }}.salt', chars=['ascii_letters'], length=8))}}"
+      groups: ["course", "video", "render"]
+    loop: "{{ userlist2 }}"
+  - name: Add users (3)
+    ansible.builtin.user:
+      name: "{{ item }}"
+      state: present
+      home: "/data4/{{ item }}"
+      password: "{{ lookup('ansible.builtin.password', 'auth/{{ item }}.pass', length=16) | password_hash('sha512', lookup('ansible.builtin.password', 'auth/{{ item }}.salt', chars=['ascii_letters'], length=8))}}"
+      groups: ["course", "video", "render"]
+    loop: "{{ userlist3 }}"
   - name: Add admin users
     ansible.builtin.user:
       name: "{{ item }}"
       state: present
+      home: "/data1/{{ item }}"
       password: "{{ lookup('ansible.builtin.password', 'auth/{{ item }}.pass', length=16) | password_hash('sha512', lookup('ansible.builtin.password', 'auth/{{ item }}.salt', chars=['ascii_letters'], length=8))}}"
-      groups: ["course", "gpu", "courseadmin"]
+      groups: ["course", "video", "render", "courseadmin"]
     loop: "{{ adminlist }}"
