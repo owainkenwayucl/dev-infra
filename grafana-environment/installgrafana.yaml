@@ -1,0 +1,14 @@
+- name: Install Grafana
+  hosts: all
+  become: true
+  become_user: root
+  tasks: 
+  - name: Add grafana repo
+    ansible.builtin.copy:
+      src: files/grafana.repo
+      path: /etc/yum.repos.d/grafana.repo
+  - name: Install grafana
+    ansible.builtin.dnf:
+      name:
+        - grafana
+      state: latest
