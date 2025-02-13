@@ -7,6 +7,6 @@
     ansible.builtin.copy:
       mode: "0700"
       src: "./files/generate_certs.sh"
-      dest: "/home/jhrole/generate_certs.sh"  
+      dest: "/root/generate_certs.sh"  
   - name: Create certificate
-    ansible.builtin.shell: "bash /home/jhrole/generate_certs.sh {{inventory_hostname}}"
+    ansible.builtin.shell: "bash /root/generate_certs.sh {{inventory_hostname}}"
