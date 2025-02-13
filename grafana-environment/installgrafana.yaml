@@ -6,7 +6,7 @@
   - name: Add grafana repo
     ansible.builtin.copy:
       src: files/grafana.repo
-      path: /etc/yum.repos.d/grafana.repo
+      dest: /etc/yum.repos.d/grafana.repo
   - name: Install grafana
     ansible.builtin.dnf:
       name:
