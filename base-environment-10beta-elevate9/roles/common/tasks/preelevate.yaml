@@ -1,0 +1,11 @@
+- name: Remove rsync
+  ansible.builtin.dnf:
+    name: 
+     - rsync
+    state: absent
+  become: true
+  become_user: root
+- name: Migrate eth0 to Network Manager
+  ansible.builtin.shell: nmcli connection migrate /etc/sysconfig/network-scripts/ifcfg-eth0
+  become: true
+  become_user: root

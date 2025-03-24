@@ -41,3 +41,10 @@
     state: latest
   become: true
   become_user: root
+- name: Reinstate rsync
+  ansible.builtin.dnf:
+    name:
+    - rsync
+    state: latest
+  become: true
+  become_user: root
