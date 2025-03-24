@@ -17,3 +17,7 @@
   ansible.builtin.shell: dnf install -y /root/epel.rpm
   become: true
   become_user: root
+- name: Set up crb
+  ansible.builtin.shell: /usr/bin/crb enable
+  become: true
+  become_user: root
