@@ -1,0 +1,17 @@
+- name: Set en-GB localization
+  shell: "localectl set-locale en_GB.UTF-8"
+  become: true
+  become_user: root
+- name: Set time-zone
+  shell: "timedatectl set-timezone Europe/London"
+  become: true
+  become_user: root
+- name: Hide fwupd notifications in motd
+  ansible.builtin.file:
+    src: "/dev/null"
+    dest: "/etc/motd.d/85-fwupd"
+    state: link
+    owner: root
+    group: root
+  become: true
+  become_user: root
