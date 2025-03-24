@@ -1,0 +1,19 @@
+# Anything where ansible uses ansible.builtin.url is broken on 10-kitten with ansible from EPEL on 9. 
+#  - name: Add EPEL release
+#    ansible.builtin.dnf:
+#      name: "https://dl.fedoraproject.org/pub/epel/epel-release-latest-10.noarch.rpm"
+#      state: present
+- name: Install wget
+  ansible.builtin.dnf:
+    name: wget
+    state: latest
+  become: true
+  become_user: root
+- name: Get EPEL RPM
+  ansible.builtin.shell: wget --output-document=/root/epel.rpm https://dl.fedoraproject.org/pub/epel/epel-release-latest-10.noarch.rpm
+  become: true
+  become_user: root
+- name: Install EPEL RPM
+  ansible.builtin.shell: dnf install -y /root/epel.rpm
+  become: true
+  become_user: root
