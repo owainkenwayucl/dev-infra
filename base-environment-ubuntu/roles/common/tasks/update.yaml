@@ -1,0 +1,11 @@
+- name: Upgrade the OS + Packages
+  ansible.builtin.apt:
+    upgrade: dist
+    update_cache: yes
+    autoremove: yes
+  become: true
+  become_user: root
+- name: Refresh snaps
+  ansible.builtin.shell: snap refresh
+  become: true
+  become_user: root
