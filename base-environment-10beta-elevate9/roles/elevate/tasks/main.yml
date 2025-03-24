@@ -1,0 +1,4 @@
+---
+- import_tasks: preelevate.yaml
+- import_tasks: elevate.yaml
+- import_tasks: rsync.yaml
