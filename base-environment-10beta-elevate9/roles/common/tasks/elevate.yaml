@@ -1,0 +1,36 @@
+- name: Add ELevate NG repo
+  ansible.builtin.get_url:
+    url: https://repo.almalinux.org/elevate/testing/elevate-ng-el9.repo
+    dest: /etc/yum.repos.d/elevate-ng-el9.repo
+  become: true
+  become_user: root
+- name: Get ELevate key
+  ansible.builtin.get_url:
+    url: https://repo.almalinux.org/elevate/RPM-GPG-KEY-ELevate
+    dest: /root/RPM-GPG-KEY-ELevate
+  become: true
+  become_user: root
+- name: Import ELevate Key
+  ansible.builtin.shell: rpm --import /root/RPM-GPG-KEY-ELevate
+  become: true
+  become_user: root
+- name: Install ELevate
+  ansible.builtin.dnf:
+    name: 
+      - leapp-upgrade
+      - leapp-data-almalinux
+    state: latest
+  become: true
+  become_user: root
+- name: ELevate Pre-Upgrade
+  ansible.builtin.shell: leapp preupgrade
+  become: true
+  become_user: root
+- name: ELevate Upgrade
+  ansible.builtin.shell: leapp upgrade
+  become: true
+  become_user: root
+- name: Post ELevate Reboot
+  ansible.builtin.reboot:
+  become: true
+  become_user: root
