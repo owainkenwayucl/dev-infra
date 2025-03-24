@@ -6,12 +6,12 @@
   shell: "timedatectl set-timezone Europe/London"
   become: true
   become_user: root
-- name: Hide fwupd notifications in motd
-  ansible.builtin.file:
-    src: "/dev/null"
-    dest: "/etc/motd.d/85-fwupd"
-    state: link
-    owner: root
-    group: root
-  become: true
-  become_user: root
+#- name: Hide fwupd notifications in motd
+#  ansible.builtin.file:
+#    src: "/dev/null"
+#    dest: "/etc/motd.d/85-fwupd"
+#    state: link
+#    owner: root
+#    group: root
+#  become: true
+#  become_user: root
