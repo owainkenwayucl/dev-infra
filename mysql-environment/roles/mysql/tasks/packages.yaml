@@ -1,0 +1,8 @@
+- name: Install MySQL
+  ansible.builtin.dnf:
+    name:
+      - mysql
+      - mysql-server
+    state: latest
+  become: true
+  become_user: root
