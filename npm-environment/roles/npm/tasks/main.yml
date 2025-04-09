@@ -2,3 +2,6 @@
   ansible.builtin.dnf:
     name:
     - npm
+    state: latest
+  become: true
+  become_user: root
