@@ -1,7 +1,4 @@
-- name: Install npm
-  ansible.builtin.dnf:
-    name:
-    - npm
-    state: latest
-  become: true
-  become_user: root
+- name: Install nvm
+  ansible.builtin.shell: curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.2/install.sh | bash
+- name: Install node
+  ansible.builtin.shell: source ~/.bashrc && nvm install node --default
