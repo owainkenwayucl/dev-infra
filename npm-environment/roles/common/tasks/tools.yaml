@@ -32,11 +32,8 @@
     name:
     - g++
     - gfortran
-    - openmpi-devel
-    - openmpi
     - patch
     - bzip2
-    - python3-mpi4py-openmpi
     - make
     state: latest
   become: true
