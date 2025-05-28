@@ -45,7 +45,7 @@
   - slurm-controller
 - hosts: workers
   roles:
-  - slurm-packages
+  - slurm-worker
 
 # Set up BeeGFS
 - hosts: mgmtnode
