@@ -26,7 +26,7 @@
   - commonkeys-server
 - hosts: mgmtnode:workers
   roles:
-  - commonkeys-client
+  - commonkeys-clients
 
 # Set up NFS
 - hosts: mgmtnode
