@@ -34,6 +34,7 @@
     group: root
     mode: 400
   become: true
+  become_user: root
 - name: ssh config
   ansible.builtin.copy:
     src: files/ssh_config

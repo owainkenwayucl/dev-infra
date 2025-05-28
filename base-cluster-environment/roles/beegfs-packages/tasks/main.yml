@@ -20,39 +20,15 @@
     description: "BeeGFS repo"
   become: true
   become_user: root
-- name: Install storage daemons
+- name: Install packages
   ansible.builtin.dnf:
-    name: "beegfs-storage"
-    state: latest
-  become: true
-  become_user: root
-- name: Install client tools
-  ansible.builtin.dnf:
-    name: "beegfs-client"
-    state: latest
-  become: true
-  become_user: root
-- name: Install utilities
-  ansible.builtin.dnf:
-    name: "beegfs-utils"
-    state: latest
-  become: true
-  become_user: root
-- name: Install helperd
-  ansible.builtin.dnf:
-    name: "beegfs-helperd"
-    state: latest
-  become: true
-  become_user: root
-- name: Install management service
-  ansible.builtin.dnf:
-    name: "beegfs-mgmtd"
-    state: latest
-  become: true
-  become_user: root
-- name: Install metadata service 
-  ansible.builtin.dnf:
-    name: "beegfs-meta"
+    name: 
+    - beegfs-storage
+    - beegfs-client
+    - beegfs-utils
+    - beegfs-mgmtd
+    - beegfs-meta
+    - beegfs-tools
     state: latest
   become: true
   become_user: root
