@@ -6,7 +6,7 @@
   become_user: root
 - name: Create exports file
   template:
-    src: files/exports.j2
+    src: templates/exports.j2
     dest:  /etc/exports
     mode: "0644"
   become: true
