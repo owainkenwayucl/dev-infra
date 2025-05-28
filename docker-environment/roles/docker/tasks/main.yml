@@ -4,8 +4,10 @@
     state: present
     gpgkey: "https://download.docker.com/linux/centos/gpg"
     gpgcheck: true
-    name: "Docker CE Stable - x86_64"
+    name: "Docker_CE_Stable_-_x86_64"
     description: "Docker CE Stable - x86_64"
+  become: true
+  become_user: root
 - name: Install iptables-nft
   ansible.builtin.dnf:
     name:
