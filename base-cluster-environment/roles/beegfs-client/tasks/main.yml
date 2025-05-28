@@ -24,13 +24,6 @@
 #     replace: 'connAuthFile=/etc/beegfs/connauthfile'
 #   become: true
 #   become_user: root
-- name: fix client conf
-  ansible.builtin.replace:
-    path: /etc/beegfs/beegfs-client.conf
-    regexp: 'connAuthFile[ \t]+='
-    replace: 'connAuthFile=/etc/beegfs/connauthfile'
-  become: true
-  become_user: root
 # - name: start helperd
 #   ansible.builtin.systemd_service:
 #     name: beegfs-helperd

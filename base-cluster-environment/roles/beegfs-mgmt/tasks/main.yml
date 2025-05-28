@@ -4,13 +4,6 @@
     cmd: /opt/beegfs/sbin/beegfs-mgmtd --init
   become: true
   become_user: root
-- name: fix manangement conf
-  ansible.builtin.replace:
-    path: /etc/beegfs/beegfs-mgmtd.conf
-    regexp: 'connAuthFile[ \t]+='
-    replace: 'connAuthFile=/etc/beegfs/connauthfile'
-  become: true
-  become_user: root
 - name: start mgmtd
   ansible.builtin.systemd_service:
     name: beegfs-mgmtd

@@ -49,7 +49,7 @@
 - name: Auth file
   ansible.builtin.copy:
     src: ./.generated/connauthfile
-    dest: /etc/beegfs/connauthfile
+    dest: /etc/beegfs/conn.auth
     owner: root
     group: root
     mode: 400
