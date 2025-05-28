@@ -1,18 +1,7 @@
-- name: Clean management location
-  ansible.builtin.file:
-    path: /beegfs_data/mgmt
-    state: absent
-  become: true
-  become_user: root
-- name: Create management location
-  ansible.builtin.file:
-    path: /beegfs_data/mgmt
-    state: directory
-  become: true
-  become_user: root
+
 - name: Configure management
   ansible.builtin.command:
-    cmd: /opt/beegfs/sbin/beegfs-mgmtd  -p /beegfs_data/mgmt
+    cmd: /opt/beegfs/sbin/beegfs-mgmtd --init
   become: true
   become_user: root
 - name: fix manangement conf
