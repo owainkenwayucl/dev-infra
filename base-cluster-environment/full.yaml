@@ -1,22 +1,60 @@
 ---
+- hosts: all
+  roles:
+  - common
+  - openmpi
+  - nfs-packages
+  - slurm-packages
+  - beegfs-packages
+  - hostfile
 
-- import_playbook: update.yaml
-- import_playbook: local.yaml
-- import_playbook: reboot.yaml
-- import_playbook: tools.yaml
-- import_playbook: nfs-server.yaml
-- import_playbook: nfs-client.yaml
-- import_playbook: hostfile.yaml
-- import_playbook: userfiles.yaml
-- import_playbook: commonkeys.yaml
-- import_playbook: sharecommonkeys.yaml
-- import_playbook: mungekey.yaml
-- import_playbook: sharemungekeys.yaml
-- import_playbook: slurmctl.yaml
-- import_playbook: slurmworker.yaml
-- import_playbook: slurmlogin.yaml
-- import_playbook: beegfs-packages.yaml
-- import_playbook: beegfs-host.yaml
-- import_playbook: beegfs-storage.yaml
-- import_playbook: beegfs-client.yaml
-- import_playbook: beegfs-links.yaml
+- hosts: loginnode
+  roles:
+  - loginnodename
+
+- hosts: mgmtnode
+  roles:
+  - mgmtnodename  
+
+- hosts: workers
+  roles:
+  - workername
+
+# Set up shared keys
+- hosts: loginnode
+  roles: 
+  - commonkeys-server
+- hosts: mgmtnode:workers
+  roles:
+  - commonkeys-client
+
+# Set up NFS
+- hosts: mgmtnode
+  roles:
+  - nfs-server
+- hosts: loginnode:workers
+  roles: 
+  - nfs-clients
+
+# Set up Slurm
+- hosts: all
+  roles:
+  - slurm-config
+- hosts: mgmtnode
+  roles: 
+  - slurm-controller
+- hosts: workers
+  roles:
+  - slurm-packages
+
+# Set up BeeGFS
+- hosts: mgmtnode
+  roles: 
+  - beegfs-mgmt
+  - beegfs-md 
+- hosts: workers
+  roles:
+  - beegfs-target
+- hosts: loginnode:workers
+  roles:
+  - beegfs-client
