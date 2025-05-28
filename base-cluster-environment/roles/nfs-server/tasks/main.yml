@@ -29,6 +29,14 @@
     owner: almalinux
   become: true
   become_user: root
+- name: Make config directory
+  ansible.builtin.file:
+    path: /nfs/config
+    state: directory
+    owner: root
+    mode: "0755"
+  become: true
+  become_user: root
 - name: Create home directory sym-link
   ansible.builtin.file:
     src: /nfs/almalinux
