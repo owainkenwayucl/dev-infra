@@ -44,3 +44,14 @@
     enabled: true
   become: true
   become_user: root
+- name: Generate connauthfile
+  local_action: ansible.builtin.command dd if=/dev/random of=./.generated/connauthfile bs=128 count=1
+- name: Auth file
+  ansible.builtin.copy:
+    src: ./.generated/connauthfile
+    dest: /etc/beegfs/connauthfile
+    owner: root
+    group: root
+    mode: 400
+  become: true
+  become_user: root

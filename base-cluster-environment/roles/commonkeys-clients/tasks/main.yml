@@ -26,3 +26,12 @@
     enabled: true
   become: true
   become_user: root
+- name: Auth file
+  ansible.builtin.copy:
+    src: ./.generated/connauthfile
+    dest: /etc/beegfs/connauthfile
+    owner: root
+    group: root
+    mode: 400
+  become: true
+  become_user: root
