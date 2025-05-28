@@ -1,9 +1,0 @@
-- name: Set service node hostname
-  hosts: servicenode
-  become: true
-  become_user: root
-  tasks: 
-  - name: Set hostname
-    ansible.builtin.hostname:
-      name: servicenode.ubiquity.condenser.arc.ucl.ac.uk
-      use: systemd
