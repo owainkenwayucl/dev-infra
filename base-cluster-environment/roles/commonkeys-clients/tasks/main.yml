@@ -42,7 +42,7 @@
 - name: Put private keys
   ansible.builtin.copy:
     src: ./.generated/key.pem
-    dest: /etc/beegfs/key
+    dest: /etc/beegfs/key.pem
     mode: "0600"
     owner: root
     group: root
