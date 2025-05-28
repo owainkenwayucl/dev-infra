@@ -55,3 +55,7 @@
     mode: 400
   become: true
   become_user: root
+
+  ansible.builtin.copy:
+    src: files/ssh_config
+    dest: /home/almalinux/.ssh/config
