@@ -1,3 +1,12 @@
+- name: Install OpenMPI
+  ansible.builtin.dnf:
+    name:
+    - openmpi-devel
+    - openmpi
+    - python3-mpi4py-openmpi
+    state: latest
+  become: true
+  become_user: root
 - name: OpenMPI Config directory
   ansible.builtin.file:
     path: /home/almalinux/.openmpi
