@@ -12,7 +12,7 @@
   become_user: root
 - name: Configure management
   ansible.builtin.command:
-    cmd: /opt/beegfs/sbin/beegfs-setup-mgmtd -p /beegfs_data/mgmt
+    cmd: /opt/beegfs/sbin/beegfs-mgmtd  -p /beegfs_data/mgmt
   become: true
   become_user: root
 - name: fix manangement conf
