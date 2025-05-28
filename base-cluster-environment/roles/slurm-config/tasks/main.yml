@@ -3,7 +3,7 @@
     src: templates/slurm.conf.j2
     dest:  /nfs/config/slurm.conf
     mode: "0644"
-    run_once: true
+  run_once: true
   become: true
   become_user: root
 - name: Delete default slurm config
