@@ -1,6 +1,6 @@
 variable img_display_name {
   type = string
-  default = "almalinux-9.4-20240805"
+  default = "almalinux-9-genericcloud-9.5-20241120"
 }
 
 variable namespace {
@@ -18,6 +18,10 @@ variable username {
 #  default = ""
 }
 
+variable keyname {
+  type = string
+#  default = ""
+}
 
 variable vm_count {
   type    = number
