@@ -1,9 +1,7 @@
 ---
-
-- import_playbook: update.yaml
-- import_playbook: local.yaml
-- import_playbook: reboot.yaml
-- import_playbook: tools.yaml
-- import_playbook: nvidia.yaml
-- import_playbook: python312.yaml
-- import_playbook: torch.yaml
+- hosts: all
+  roles:
+  - common
+  - python312
+  - nvidia
+  - genai

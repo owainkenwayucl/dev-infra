@@ -1,0 +1,34 @@
+- name: Nvidia repo
+  ansible.builtin.yum_repository:
+    baseurl: https://developer.download.nvidia.com/compute/cuda/repos/rhel9/x86_64
+    state: present
+    name: "Nvidia"
+    description: "Nvidia repo"
+    gpgkey: https://developer.download.nvidia.com/compute/cuda/repos/rhel9/x86_64/D42D0685.pub
+    gpgcheck: true
+  become: true
+  become_user: root
+- name: Driver
+  ansible.builtin.shell: dnf -y module install nvidia-driver:open-dkms
+  become: true
+  become_user: root
+- name: Helper tools
+  ansible.builtin.dnf:
+    name: 
+      - nvtop
+      - pciutils
+    state: latest
+  become: true
+  become_user: root
+- name: Cuda
+  ansible.builtin.dnf:
+    name: 
+      - cuda-toolkit-12-6
+      - libcudnn9-cuda-12
+      - libcudnn9-devel-cuda-12
+      - libnccl
+      - libnccl-devel
+      - libnccl-static
+    state: latest
+  become: true
+  become_user: root
