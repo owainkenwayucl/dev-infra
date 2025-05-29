@@ -100,8 +100,9 @@
     state: latest
   become: true
   become_user: root
+  # Note that version 5 breaks on the nodejs from Alma9 - need to investigate solution
 - name: Install http proxy
-  ansible.builtin.shell: npm install -g configurable-http-proxy
+  ansible.builtin.shell: npm install -g configurable-http-proxy@4.6.3
   become: true
   become_user: root
 - name: Copy Requirements
