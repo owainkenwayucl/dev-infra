@@ -1,0 +1,50 @@
+- name: Add grafana repo
+  ansible.builtin.copy:
+    src: files/grafana.repo
+    dest: /etc/yum.repos.d/grafana.repo
+  become: true
+  become_user: root
+- name: Install grafana
+  ansible.builtin.dnf:
+    name:
+      - grafana
+    state: latest
+  become: true
+  become_user: root
+- name: Make grafana folder
+  ansible.builtin.file:
+    path: /grafana
+    owner: grafana
+    group: grafana
+    state: directory    
+  become: true
+  become_user: root
+- name: Copy TLS generation stub
+  ansible.builtin.copy:
+    mode: "0700"
+    src: "files/generate_certs.sh"
+    dest: "/grafana/generate_certs.sh"  
+  become: true
+  become_user: grafana
+- name: Create certificate
+  ansible.builtin.shell: "bash /grafana/generate_certs.sh {{inventory_hostname}}"
+  become: true
+  become_user: grafana
+- name: Configure Grafana ini file
+  ansible.builtin.blockinfile:
+    path: /etc/grafana/grafana.ini
+    insertafter: "[server]"
+    block: |
+      protocol = https
+      http_port = 3000
+      cert_file = /grafana/grafana.crt
+      cert_key = /grafana/grafana.key
+  become: true
+  become_user: root
+- name: Start and enable Grafana
+  ansible.builtin.systemd_service:
+    name: grafana-server
+    state: started
+    enabled: true
+  become: true
+  become_user: root
