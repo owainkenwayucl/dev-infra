@@ -60,13 +60,13 @@ resource "harvester_virtualmachine" "vm" {
     auto_delete = true
   }
 
-  tags = {
-    condenser_ingress_isEnabled = true
-    condenser_ingress_reg_hostname = "dockerhub"
-    condenser_ingress_reg_port = 4000
-    condenser_ingress_reg_protocol = "https"
-    condenser_ingress_reg_nginx_proxy-body-size = "100000m"
-  }
+ # tags = {
+ #   condenser_ingress_isEnabled = true
+ #   condenser_ingress_reg_hostname = "dockerhub"
+ #   condenser_ingress_reg_port = 4000
+ #   condenser_ingress_reg_protocol = "https"
+ #   condenser_ingress_reg_nginx_proxy-body-size = "100000m"
+ # }
 
   cloudinit {
     user_data_secret_name = harvester_cloudinit_secret.cloud-config.name
