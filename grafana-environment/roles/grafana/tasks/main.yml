@@ -33,7 +33,7 @@
 - name: Configure Grafana ini file
   ansible.builtin.blockinfile:
     path: /etc/grafana/grafana.ini
-    insertafter: "[server]"
+    insertafter: \[server\]
     block: |
       protocol = https
       http_port = 3000
