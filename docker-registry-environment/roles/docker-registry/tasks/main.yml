@@ -1,0 +1,21 @@
+- name: Copy TLS generation stub
+  ansible.builtin.copy:
+    mode: "0700"
+    src: "./files/generate_certs.sh"
+    dest: "/home/almalinux/generate_certs.sh"  
+- name: Create certificate
+  ansible.builtin.shell: "bash /home/almalinux/generate_certs.sh {{inventory_hostname}}"
+- name: Create registry location
+  ansible.builtin.file:
+    path: /home/almalinux/registry
+    state: directory
+- name: Create authentication location
+  ansible.builtin.file:
+    path: /home/almalinux/auth
+    state: directory
+- name: Create htpasswd file
+  ansible.builtin.shell: "docker run --rm --entrypoint htpasswd httpd:2 -Bbn regadmin {{lookup('ansible.builtin.password', './.registrypas', length=16)}} > /home/almalinux/auth/htpasswd"
+- name: Start registry - rw
+  ansible.builtin.shell: 'docker run -d --restart=always --name registry-rw -v /home/almalinux/certs:/certs -e REGISTRY_HTTP_ADDR=0.0.0.0:5000 -e REGISTRY_HTTP_TLS_CERTIFICATE=/certs/domain.crt -e REGISTRY_HTTP_TLS_KEY=/certs/domain.key -p 5000:5000 -v /home/almalinux/auth:/auth -e REGISTRY_AUTH=htpasswd -e REGISTRY_AUTH_HTPASSWD_REALM="Registry Realm" -e REGISTRY_AUTH_HTPASSWD_PATH=/auth/htpasswd -v /home/almalinux/registry:/var/lib/registry registry:2'
+- name: Start registry - ro
+  ansible.builtin.shell: 'docker run -d --restart=always --name registry-ro -v /home/almalinux/certs:/certs -e REGISTRY_HTTP_ADDR=0.0.0.0:6000 -e REGISTRY_HTTP_TLS_CERTIFICATE=/certs/domain.crt -e REGISTRY_HTTP_TLS_KEY=/certs/domain.key -p 6000:6000 -v /home/almalinux/registry:/var/lib/registry:ro -e REGISTRY_STORAGE_MAINTENANCE_READONLY="{\"enabled\":true}" registry:2'
