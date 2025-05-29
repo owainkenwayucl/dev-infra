@@ -1,12 +1,6 @@
 ---
-
-- import_playbook: update.yaml
-- import_playbook: local.yaml
-- import_playbook: reboot.yaml
-- import_playbook: tools.yaml
-- import_playbook: roleuser.yaml
-- import_playbook: createcerts.yaml
-- import_playbook: createusers.yaml
-- import_playbook: python312.yaml
-- import_playbook: nodenpm.yaml
-- import_playbook: installjupyter.yaml
+- hosts: all
+  roles:
+  - common
+  - python312
+  - jupyterhub

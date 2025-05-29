@@ -1,0 +1,135 @@
+- name: Add Shadowlords group
+  ansible.builtin.group:
+    name: shadowlords
+    state: present
+  become: true
+  become_user: root
+- name: Add role user
+  ansible.builtin.user:
+    name: "jhrole"
+    state: present
+    groups: ["shadowlords"]
+  become: true
+  become_user: root
+- name: Set permissions of /etc/shadow
+  ansible.builtin.file:
+    path: /etc/shadow
+    group: shadowlords
+    mode: "0640"
+  become: true
+  become_user: root
+- name: Update sudoers
+  ansible.builtin.blockinfile:
+    dest: /etc/sudoers
+    block: |
+      Runas_Alias JUPYTER_USERS = jhrole, %course
+
+      Cmnd_Alias JUPYTER_CMD = /opt/jupyterhub/bin/sudospawner
+
+      jhrole ALL=(JUPYTER_USERS) NOPASSWD:JUPYTER_CMD
+  become: true
+  become_user: root
+- name: Copy TLS generation stub
+  ansible.builtin.copy:
+    mode: "0700"
+    src: "files/generate_certs.sh"
+    dest: "/home/jhrole/generate_certs.sh"  
+  become: true
+  become_user: jhrole
+- name: Create certificate
+  ansible.builtin.shell: "bash /home/jhrole/generate_certs.sh {{inventory_hostname}}"
+  become: true
+  become_user: jhrole
+- name: Add Course group
+  ansible.builtin.group:
+    name: course
+    state: present
+  become: true
+  become_user: root
+- name: Add Admin group
+  ansible.builtin.group:
+    name: courseadmin
+    state: present
+  become: true
+  become_user: root
+- name: Add users (1)
+  ansible.builtin.user:
+    name: "{{ item }}"
+    state: present
+    home: "/data2/{{ item }}"
+    password: "{{ lookup('ansible.builtin.password', 'auth/{{ item }}.pass', length=16) | password_hash('sha512', lookup('ansible.builtin.password', 'auth/{{ item }}.salt', chars=['ascii_letters'], length=8))}}"
+    groups: ["course", "video", "render"]
+  loop: "{{ userlist1 }}"
+  become: true
+  become_user: root
+- name: Add users (2)
+  ansible.builtin.user:
+    name: "{{ item }}"
+    state: present
+    home: "/data3/{{ item }}"
+    password: "{{ lookup('ansible.builtin.password', 'auth/{{ item }}.pass', length=16) | password_hash('sha512', lookup('ansible.builtin.password', 'auth/{{ item }}.salt', chars=['ascii_letters'], length=8))}}"
+    groups: ["course", "video", "render"]
+  loop: "{{ userlist2 }}"
+  become: true
+  become_user: root
+- name: Add users (3)
+  ansible.builtin.user:
+    name: "{{ item }}"
+    state: present
+    home: "/data4/{{ item }}"
+    password: "{{ lookup('ansible.builtin.password', 'auth/{{ item }}.pass', length=16) | password_hash('sha512', lookup('ansible.builtin.password', 'auth/{{ item }}.salt', chars=['ascii_letters'], length=8))}}"
+    groups: ["course", "video", "render"]
+  loop: "{{ userlist3 }}"
+  become: true
+  become_user: root
+- name: Add admin users
+  ansible.builtin.user:
+    name: "{{ item }}"
+    state: present
+    home: "/data1/{{ item }}"
+    password: "{{ lookup('ansible.builtin.password', 'auth/{{ item }}.pass', length=16) | password_hash('sha512', lookup('ansible.builtin.password', 'auth/{{ item }}.salt', chars=['ascii_letters'], length=8))}}"
+    groups: ["course", "video", "render", "courseadmin"]
+  loop: "{{ adminlist }}"
+  become: true
+  become_user: root
+- name: node.js and npm
+  ansible.builtin.dnf:
+    name:
+      - nodejs
+      - npm
+    state: latest
+  become: true
+  become_user: root
+- name: Install http proxy
+  ansible.builtin.shell: npm install -g configurable-http-proxy
+  become: true
+  become_user: root
+- name: Copy Requirements
+  ansible.builtin.copy:
+    src: "files/requirements.txt"
+    dest: "/opt/requirements.txt"
+  become: true
+  become_user: root
+- name: Install Python bits
+  ansible.builtin.pip:
+    requirements: "/opt/requirements.txt"
+    state: latest
+    virtualenv_python: python3.12
+    virtualenv: "/opt/jupyterhub"
+  become: true
+  become_user: root
+- name: Copy config file
+  ansible.builtin.copy:
+    src: "files/jupyterhub_config.py"
+    dest: "/home/jhrole/jupyterhub_config.py"
+    owner: jhrole
+  become: true
+  become_user: root
+- name: Copy wrapper
+  ansible.builtin.copy:
+    src: "files/start_jh.sh"
+    dest: "/home/jhrole/start_jh.sh"
+    owner: jhrole
+    mode: "0750"
+  become: true
+  become_user: root
