@@ -64,9 +64,9 @@ resource "harvester_virtualmachine" "loginvm" {
   }
 
   timeouts {
-    create: "20m"
-    update: "20m"
-    delete: "20m"
+    create = "20m"
+    update = "20m"
+    delete = "20m"
   }
 }
 
@@ -114,9 +114,9 @@ resource "harvester_virtualmachine" "mgmtvm" {
   }
 
   timeouts {
-    create: "20m"
-    update: "20m"
-    delete: "20m"
+    create = "20m"
+    update = "20m"
+    delete = "20m"
   }
 }
 
@@ -164,8 +164,8 @@ resource "harvester_virtualmachine" "workervm" {
   }
 
   timeouts {
-    create: "20m"
-    update: "20m"
-    delete: "20m"
+    create = "20m"
+    update = "20m"
+    delete = "20m"
   }
 }
