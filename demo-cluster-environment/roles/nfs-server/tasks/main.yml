@@ -1,3 +1,10 @@
+- name: Enable NFS server service
+  ansible.builtin.service:
+    name: nfs-server
+    enabled: true
+    state: started 
+  become: true
+  become_user: root
 - name: Make directory to export
   ansible.builtin.file:
     path: /nfs
@@ -15,11 +22,11 @@
   ansible.builtin.shell: exportfs -a
   become: true
   become_user: root
-- name: Enable NFS server service
+- name: Restart NFS server service
   ansible.builtin.service:
     name: nfs-server
     enabled: true
-    state: started 
+    state: restarted 
   become: true
   become_user: root
 - name: Make user directory
