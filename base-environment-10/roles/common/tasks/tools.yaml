@@ -10,7 +10,7 @@
       - bind-utils
       - htop
       - git
-      - ansible
+      - ansible-core
       - make
       - wget
       - unzip
