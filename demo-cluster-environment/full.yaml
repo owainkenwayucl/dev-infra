@@ -47,6 +47,6 @@
   - slurm-worker
 
 # add coursework 
-- hosts: all
+- hosts: loginnode
   roles: 
   - demo-code
