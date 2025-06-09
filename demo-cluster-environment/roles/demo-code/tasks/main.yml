@@ -1,0 +1,6 @@
+- name: Clone coursework repo
+  ansible.builtin.git:
+    repo: https://github.com/owainkenwayucl/coursework-c0239.git
+    dest: /home/almalinux/coursework
+    clone: yes
+    update: yes

@@ -45,3 +45,7 @@
 - hosts: workers
   roles:
   - slurm-worker
+
+# add coursework 
+- hosts: all
+  roles: demo-code
