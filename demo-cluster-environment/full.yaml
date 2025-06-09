@@ -48,4 +48,5 @@
 
 # add coursework 
 - hosts: all
-  roles: demo-code
+  roles: 
+  - demo-code
