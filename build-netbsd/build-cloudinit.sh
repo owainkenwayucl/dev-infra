@@ -19,7 +19,7 @@ pkgin install qemu-guest-agent
 
 python3.12 setup.py build
 python3.12 setup.py install -O1 --distro netbsd --skip-build --init-system sysvinit_netbsd
-
+mv -v /usr/local/etc/rc.d/cloud* /etc/rc.d
 sed -i.bak -e "/^cloud.*=.*/d" /etc/rc.conf
 echo '
 cloudinitlocal="YES"
