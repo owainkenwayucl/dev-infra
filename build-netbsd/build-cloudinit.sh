@@ -27,3 +27,5 @@ cloudinit="YES"
 cloudconfig="YES"
 cloudfinal="YES"' >> /etc/rc.conf
 
+# lock root account
+usermod -C yes root
