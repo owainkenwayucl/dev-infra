@@ -10,7 +10,7 @@ pymver=${PYTHONVERSION:-3.12.9}
 pkgin install git python${pyver}-${pymver} dmidecode sudo
 
 git clone https://github.com/canonical/cloud-init.git
-git cd cloud-init
+cd cloud-init
 git checkout 25.1.2
 
 pkgin install ${pyver}-configobj ${pyver}-jinja2 ${pyver}-oauthlib ${pyver}-requests ${pyver}-setuptools ${pyver}-yaml ${pyver}-jsonschema ${pyver}-pip
