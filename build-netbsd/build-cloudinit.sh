@@ -13,7 +13,7 @@ git clone https://github.com/canonical/cloud-init.git
 cd cloud-init
 git checkout 25.1.2
 
-pkgin install ${pyver}-configobj ${pyver}-jinja2 ${pyver}-oauthlib ${pyver}-requests ${pyver}-setuptools ${pyver}-yaml ${pyver}-jsonschema ${pyver}-pip
+pkgin install py${pyver}-configobj py${pyver}-jinja2 py${pyver}-oauthlib py${pyver}-requests py${pyver}-setuptools py${pyver}-yaml py${pyver}-jsonschema py${pyver}-pip
 
 pkgin install qemu-guest-agent
 
