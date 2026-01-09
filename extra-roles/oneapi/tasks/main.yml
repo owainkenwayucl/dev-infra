@@ -1,0 +1,23 @@
+- name: Intel Repo
+  ansible.builtin.yum_repository:
+    baseurl: "https://yum.repos.intel.com/oneapi"
+    state: present
+    gpgkey: "https://yum.repos.intel.com/intel-gpg-keys/GPG-PUB-KEY-INTEL-SW-PRODUCTS.PUB"
+    gpgcheck: true
+    name: "Intel® oneAPI repository"
+    description: "Intel® oneAPI repository"
+  become: true
+  become_user: root
+- name: Install OneAPI
+  ansible.builtin.dnf:
+    name:
+      - intel-oneapi-base-toolkit 
+      - intel-oneapi-hpc-toolkit
+      - intel-cpp-essentials
+      - Intel-fortran-essentials
+      - intel-deep-learning-essentials
+    state: latest
+  become: true
+  become_user: root
+
+
