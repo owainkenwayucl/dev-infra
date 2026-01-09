@@ -4,7 +4,7 @@
     state: present
     gpgkey: "https://yum.repos.intel.com/intel-gpg-keys/GPG-PUB-KEY-INTEL-SW-PRODUCTS.PUB"
     gpgcheck: true
-    name: "Intel® oneAPI repository"
+    name: "Intel_oneAPI_repository"
     description: "Intel® oneAPI repository"
   become: true
   become_user: root
