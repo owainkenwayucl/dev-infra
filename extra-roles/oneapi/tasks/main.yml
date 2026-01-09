@@ -14,7 +14,7 @@
       - intel-oneapi-base-toolkit 
       - intel-oneapi-hpc-toolkit
       - intel-cpp-essentials
-      - Intel-fortran-essentials
+      - intel-fortran-essentials
       - intel-deep-learning-essentials
     state: latest
   become: true
