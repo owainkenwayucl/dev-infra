@@ -1,6 +1,6 @@
 variable img_display_name {
   type = string
-  default = "almalinux-10.0-20250528"
+  default = "almalinux-10-generic"
 }
 
 variable namespace {
@@ -10,7 +10,7 @@ variable namespace {
 
 variable network_name {
   type = string
-  default = "arc-general-ns/gen-proj"
+  default = "arc-general-ns/default"
 }
 
 variable username {

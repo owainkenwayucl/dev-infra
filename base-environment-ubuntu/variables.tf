@@ -1,7 +1,6 @@
 variable img_display_name {
   type = string
-#  default = "ubuntu-22.04-20241206-jammy-server-cloudimg-amd64.img"
-  default = "ubuntu-24.04-20241206-noble-server-cloudimg-amd64.img"
+  default = "Ubuntu 24.04"
 }
 
 variable namespace {
@@ -11,7 +10,7 @@ variable namespace {
 
 variable network_name {
   type = string
-  default = "arc-general-ns/gen-proj"
+  default = "arc-general-ns/default"
 }
 
 variable username {
