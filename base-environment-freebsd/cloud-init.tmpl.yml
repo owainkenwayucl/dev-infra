@@ -7,20 +7,15 @@ packages:
 ssh_pwauth: false
 
 users:
-  - name: root
-    lock_passwd: true
-    ssh_authorized_keys: 
-      - ${public_key_openssh}
   - name: freebsd
-    lock_passwd: true
     ssh_authorized_keys: 
       - ${public_key_openssh}
     groups: wheel
     
 runcmd:
-  - service qemu-guest-agent start
   - pw mod user root -w no
   - pw mod user freebsd -w no
+  - service qemu-guest-agent start
   
 write_files:
   - path: /usr/local/etc/sudoers
