@@ -35,7 +35,7 @@ resource "harvester_virtualmachine" "vm" {
   memory = "16Gi"
 
   efi         = true
-  secure_boot = true
+  secure_boot = false
 
   run_strategy    = "RerunOnFailure"
   hostname        = "${var.username}-freebsd-${format("%02d", count.index + 1)}-${random_id.secret.hex}"
