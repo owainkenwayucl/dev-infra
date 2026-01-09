@@ -1,7 +1,7 @@
 data "harvester_image" "img" {
   display_name = var.img_display_name
-  #namespace    = "harvester-public"
-  namespace = var.namespace
+  namespace    = "harvester-public"
+  #namespace = var.namespace
 }
 
 data "harvester_ssh_key" "mysshkey" {
