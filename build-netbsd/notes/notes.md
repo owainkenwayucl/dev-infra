@@ -41,3 +41,19 @@ virt-install --connect qemu:///system -n netbsd \
         --disk path=/var/lib/libvirt/images/netbsd10_1.qcow2,format=qcow2,size=10       \
         -w network=default --nographics --serial pty --console pty,target_type=serial 
 ```
+
+## 3rd of February 2026
+
+The solution to fetching sets via http is to add a second disk that points to the "big" NetBSD installer and tell the installer that the install cdrom is "wd1a".
+
+```
+virt-install --connect qemu:///system -n netbsd \
+        --ram 4096 --vcpus=2 \
+        --cpu=host \
+        -c /var/lib/libvirt/images/NetBSD-10.1-amd64-com.iso \
+        --os-variant=netbsd10.0  \
+        --disk path=/var/lib/libvirt/images/netbsd10_1.qcow2,format=qcow2,size=10 \
+        --disk path=/var/lib/libvirt/images/NetBSD-10.1-amd64.iso \
+        -w network=default --nographics --serial pty --console pty,target_type=serial 
+```
+
