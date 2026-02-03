@@ -28,3 +28,15 @@ The actual solution is to download and use the boot-com image and boot it with `
 Doing the actual install I run into two minor issues one of which I remember (the net install pulls from http which feels less than good(tm)) and one I don't (what is the appopriate way to apportion swap if we intend to resize the volume with cloud-init). 
 
 I put up with the risk (this is a test image anyway) of http and set swap to zero and successfully did a basic test install.
+
+At this point the `virt-install` command looks like:
+
+```
+virt-install --connect qemu:///system -n netbsd \
+        --ram 4096 --vcpus=2 \
+        --cpu=host \
+        -c /var/lib/libvirt/images/NetBSD-10.1-amd64-com.iso \
+        --os-variant=netbsd10.0  \
+        --disk path=/var/lib/libvirt/images/netbsd10_1.qcow2,format=qcow2,size=10       \
+        -w network=default --nographics --serial pty --console pty,target_type=serial 
+```
