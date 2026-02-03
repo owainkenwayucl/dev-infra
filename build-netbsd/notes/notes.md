@@ -1,6 +1,6 @@
 # NetBSD on Condenser
 
-So I did this a while back but have to re-do it due to losing the image in the events of Xmas 2026.
+So I did this a while back but have to re-do it due to losing the image in the events of Xmas 2025.
 
 Version 1 will be replicating what I did before. Then I really want to fix the qemu-guest-agent/virtio-serial challenges.
 
