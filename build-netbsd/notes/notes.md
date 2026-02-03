@@ -20,9 +20,9 @@ Step 1 was easy.
 
 Step 2+3 was a faff because of lost knowledge on how to fix the following issues with virt-install/the full NetBSD CD-ROM image.
 
-a. `-c` results in no serial console.
+1. `-c` results in no serial console.
 
-b. `-l` doesn't recognise the image (recommended by warning when doing a).
+2. `-l` doesn't recognise the image (recommended by warning when doing 1).
 
 The actual solution is to download and use the boot-com image and boot it with `-c`.
 
@@ -42,7 +42,7 @@ virt-install --connect qemu:///system -n netbsd \
         -w network=default --nographics --serial pty --console pty,target_type=serial 
 ```
 
-## 3rd of February 2026
+## 3rd of February, the year of our Lord 2026
 
 The solution to fetching sets via http is to add a second disk that points to the "big" NetBSD installer and tell the installer that the install cdrom is "wd1a".
 
