@@ -20,8 +20,9 @@ Step 1 was easy.
 
 Step 2+3 was a faff because of lost knowledge on how to fix the following issues with virt-install/the full NetBSD CD-ROM image.
 
-a) `-c` results in no serial console.
-b) `-l` doesn't recognise the image (recommended by warning when doing a).
+a. `-c` results in no serial console.
+
+b. `-l` doesn't recognise the image (recommended by warning when doing a).
 
 The actual solution is to download and use the boot-com image and boot it with `-c`.
 
