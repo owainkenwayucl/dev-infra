@@ -57,3 +57,51 @@ virt-install --connect qemu:///system -n netbsd \
         -w network=default --nographics --serial pty --console pty,target_type=serial 
 ```
 
+## 3rd of February, the year of our Lord 2026
+
+Note that after install we want to:
+
+1. Set a root password
+2. Enable SSH
+3. Enable binary packages
+4. Enable PKGSRC
+
+First "real" test build leaves as follows:
+
+```
+Filesystem     Size   Used  Avail %Cap Mounted on
+/dev/dk0       8.7G   1.6G   6.7G  18% /
+tmpfs          1.0G     0B   1.0G   0% /tmp
+kernfs         1.0K   1.0K     0B 100% /kern
+ptyfs          1.0K   1.0K     0B 100% /dev/pts
+procfs         4.0K   4.0K     0B 100% /proc
+tmpfs          1.0G     0B   1.0G   0% /var/shm
+```
+
+Given this doesn't seem to be sparse allocating I think it's sensible to go for a 3G image with 1G swap?
+
+That ran hilariously out of space when setting up PKGSRC. I think I'll go for no swap as the Internet is unclear on whether you can expand into non-contiguous space.
+
+OK somehow changes didn't persist through reboot?
+
+Ah - maybe it died....
+
+```
+calculating dependencies...-python312-3.12.9 is not available in the repository
+calculating dependencies...done.
+nothing to do.
+```
+
+Ok - we need to move to 3.12.12
+
+Now the problem is that "something has changed" and so we can't find the jsonpatch dependency. Worse, it's not in pkgsrc...
+
+But we are installing the same versions of things as before. Frustrating.
+
+
+OK - I have an image that boots but there's no such concept as growfs. I'm completely baffled. Also I've ended up with MBR instead of GPT????
+
+Looking at the docs I may need `gpart`? https://cloudinit.readthedocs.io/en/latest/reference/modules.html
+
+I so confused. How did I have this working!?!
+
