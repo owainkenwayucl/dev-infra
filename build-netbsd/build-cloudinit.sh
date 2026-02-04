@@ -5,7 +5,7 @@
 set -e
 
 pyver=${PYTHONSVERSION:-312}
-pymver=${PYTHONVERSION:-3.12.9}
+pymver=${PYTHONVERSION:-3.12.12}
 
 pkgin install git python${pyver}-${pymver} dmidecode sudo
 
