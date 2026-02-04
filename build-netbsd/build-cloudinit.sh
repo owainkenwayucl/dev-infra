@@ -7,15 +7,14 @@ set -e
 pyver=${PYTHONSVERSION:-312}
 pymver=${PYTHONVERSION:-3.12.12}
 
-pkgin install git python${pyver}-${pymver} dmidecode sudo
+pkgin install git python${pyver}-${pymver} dmidecode sudo py${pyver}-configobj py${pyver}-jinja2 py${pyver}-oauthlib py${pyver}-requests py${pyver}-setuptools py${pyver}-yaml py${pyver}-jsonschema py${pyver}-pip qemu-guest-agent
 
 git clone https://github.com/canonical/cloud-init.git
 cd cloud-init
-git checkout 25.1.2
+git checkout 25.1.3 # bump security fix
 
-pkgin install py${pyver}-configobj py${pyver}-jinja2 py${pyver}-oauthlib py${pyver}-requests py${pyver}-setuptools py${pyver}-yaml py${pyver}-jsonschema py${pyver}-pip
-
-pkgin install qemu-guest-agent
+# I hate this but there is no package for jsonpatch
+pip3.12 install jsonpatch
 
 python3.12 setup.py build
 python3.12 setup.py install -O1 --distro netbsd --skip-build --init-system sysvinit_netbsd
