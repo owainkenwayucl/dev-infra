@@ -61,7 +61,7 @@ resource "harvester_virtualmachine" "vm" {
   }
 
   disk {
-    name       = "rootdisk"
+    name       = "notlustre"
     type       = "disk"
     size       = "300Gi"
     bus        = "virtio"
