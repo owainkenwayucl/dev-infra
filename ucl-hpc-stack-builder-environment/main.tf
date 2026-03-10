@@ -70,8 +70,13 @@ resource "harvester_virtualmachine" "vm" {
     auto_delete = true
   }
 
-
   cloudinit {
     user_data_secret_name = harvester_cloudinit_secret.cloud-config.name
+  }
+
+  timeouts {
+    create = "20m"
+    update = "20m"
+    delete = "20m"
   }
 }
