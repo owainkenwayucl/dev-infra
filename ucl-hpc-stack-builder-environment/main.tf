@@ -25,20 +25,20 @@ resource "harvester_virtualmachine" "vm" {
   
   count = var.vm_count
 
-  name                 = "${var.username}-base-${format("%02d", count.index + 1)}-${random_id.secret.hex}"
+  name                 = "${var.username}-spacksites-${format("%02d", count.index + 1)}-${random_id.secret.hex}"
   namespace            = var.namespace
   restart_after_update = true
 
   description = "Base VM"
 
-  cpu    = 2
-  memory = "16Gi"
+  cpu    = 4
+  memory = "32Gi"
 
   efi         = true
   secure_boot = true
 
   run_strategy    = "RerunOnFailure"
-  hostname        = "${var.username}-base-${format("%02d", count.index + 1)}-${random_id.secret.hex}"
+  hostname        = "${var.username}-spacksites-${format("%02d", count.index + 1)}-${random_id.secret.hex}"
   reserved_memory = "100Mi"
   machine_type    = "q35"
 
@@ -59,6 +59,17 @@ resource "harvester_virtualmachine" "vm" {
     image       = data.harvester_image.img.id
     auto_delete = true
   }
+
+  disk {
+    name       = "rootdisk"
+    type       = "disk"
+    size       = "500Gi"
+    bus        = "virtio"
+    boot_order = 2
+
+    auto_delete = true
+  }
+
 
   cloudinit {
     user_data_secret_name = harvester_cloudinit_secret.cloud-config.name
