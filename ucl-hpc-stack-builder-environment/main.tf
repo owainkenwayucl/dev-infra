@@ -63,7 +63,7 @@ resource "harvester_virtualmachine" "vm" {
   disk {
     name       = "rootdisk"
     type       = "disk"
-    size       = "500Gi"
+    size       = "300Gi"
     bus        = "virtio"
     boot_order = 2
 
