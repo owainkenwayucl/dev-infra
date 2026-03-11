@@ -17,7 +17,7 @@
   become_user: root
 - name: Make mount point
   ansible.builtin.file:
-    path: /shared
+    path: /lustre
     state: directory
   become: true
   become_user: root
@@ -27,7 +27,7 @@
     state: mounted
     fstype: xfs
     src: "/dev/vdb1"
-    path: /shared
+    path: /lustre
     opts: defaults
   become: true
   become_user: root
