@@ -178,7 +178,7 @@
       - firewalld-filesystem
       - dhcp-common
       - coreutils-common
-      - openssl-fips-provider-so
+#      - openssl-fips-provider-so
       - openssl-fips-provider
       - openssl-libs
       - coreutils
@@ -403,7 +403,7 @@
       - dnf
       - python3-subscription-manager-rhsm
       - subscription-manager
-      - insights-client
+#      - insights-client
       - authselect-libs
       - dhcp-client
       - initscripts-service
@@ -411,7 +411,7 @@
       - audit
       - kexec-tools
       - authselect
-      - rhc
+#      - rhc
       - yum
       - dnf-plugins-core
       - nfs-utils
@@ -469,9 +469,9 @@
       - iwl6050-firmware
       - iwl7260-firmware
       - rootfiles
-      - katello-ca-consumer-sat-mast01.ad.ucl.ac.uk
-      - gpg-pubkey
-      - gpg-pubkey
+#      - katello-ca-consumer-sat-mast01.ad.ucl.ac.uk
+#      - gpg-pubkey
+#      - gpg-pubkey
       - libgcc
       - selinux-policy
       - selinux-policy-targeted
@@ -664,7 +664,7 @@
       - bash-completion
       - slurm
       - slurm-devel
-      - slurm-libpmi
+#      - slurm-libpmi
       - slurm-slurmd
       - glibc-common
       - glibc-gconv-extra
@@ -685,8 +685,8 @@
       - dracut-squash
       - nscd
       - nano
-      - kmod-lustre-client
-      - lustre-client
+#      - kmod-lustre-client
+#     - lustre-client
       - shadow-utils-subid
       - fuse3-libs
       - fakeroot-libs
@@ -698,9 +698,9 @@
       - libcurl
       - libcurl-devel
       - openssl-devel
-      - lbnl-nhc
-      - gpg-pubkey
-      - mdatp
+#      - lbnl-nhc
+#      - gpg-pubkey
+#      - mdatp
       - fail2ban-selinux
       - fail2ban-server
       - fail2ban-firewalld
