@@ -10,7 +10,7 @@ users:
     groups: wheel
 
 write_files:
-  - path: /usr/local/etc/sudoers
+  - path: /etc/sudoers
     content: |
       %wheel ALL=(ALL) NOPASSWD: ALL
     append: true
