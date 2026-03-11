@@ -11,7 +11,7 @@ def generate_inventory():
     command = "terraform output --json vm_ips".split()
     ip_data = json.loads(run(command).stdout)
 
-    host_vars = {}
+    host_vars = {"ansible_user": "ccspapp"}
 
 
     counter = 0
