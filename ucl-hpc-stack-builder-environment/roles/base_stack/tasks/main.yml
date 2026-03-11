@@ -714,4 +714,21 @@
     state: latest
   become: true
   become_user: root
+- name: Create apps directory
+  ansible.builtin.file:
+    path: /lustre/apps
+    state: directory
+    owner: ccspapp
+    group: ccspapp
+  become: true
+  become_user: root
+- name: Set up sym-links
+  ansible.builtin.file:
+    path: /apps
+    src: /lustre/apps
+    state: link
+    owner: ccspapp
+    group: ccspapp
+  become: true
+  become_user: root
 
