@@ -15,12 +15,12 @@ def generate_inventory():
 
 
     counter = 0
-    workers = {}
+    workers = []
 
     for a in ip_data:
         name = a
         host_vars[name] = { "ip": [a] }
-        workers[name] = {"ansible_host": name, "ansible_user": "ccspapp"}
+        workers.append(name)
         counter += 1
 
     _meta = {}
