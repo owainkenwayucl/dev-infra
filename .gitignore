@@ -39,6 +39,7 @@ terraform.rc
 */.generated/*
 
 junk/*
+*/junk/*
 
 # VIM temp files
 *.swp
