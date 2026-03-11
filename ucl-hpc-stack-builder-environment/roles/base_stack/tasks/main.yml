@@ -710,6 +710,7 @@
       - munge
       - gmp-c++
       - gmp-devel
+      - environment-modules
     state: latest
   become: true
   become_user: root
