@@ -3,3 +3,5 @@
   roles:
   - common
   - second_disk
+  - base_stack
+  - spacksites
