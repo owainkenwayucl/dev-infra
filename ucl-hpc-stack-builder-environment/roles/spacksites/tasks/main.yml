@@ -29,6 +29,10 @@
     repo: https://github.com/UCL-ARC/hpc-spack.git 
     version: 0.23
     dest: /home/ccspapp/Scratch/spack/0.23/hpc-spack
+- name: Get HPC modules
+  ansible.builtin.git:
+    repo: https://github.com/UCL-ARC/hpc-modulefiles.git
+    dest: /apps/hpc-modulefiles
 - name: Initial create
   ansible.builtin.shell: "/home/ccspapp/initial.sh spacksites/spacksites --config-file spacksites/settings/deploy_sites.ini create 2025-09"
 
