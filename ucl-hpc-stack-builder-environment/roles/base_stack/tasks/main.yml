@@ -731,4 +731,17 @@
     group: ccspapp
   become: true
   become_user: root
-
+- name: Create CASTEP group
+  ansible.builtin.group:
+    name: ag-archpc-castep
+    state: present
+  become: true
+  become_user: root
+- name: Add ccspapp to the CASTEP group
+  ansible.builtin.user:
+    name: ccspapp
+    groups: ag-archpc-castep
+    apprend: true
+    state: present
+  become: true
+  become_user: root
