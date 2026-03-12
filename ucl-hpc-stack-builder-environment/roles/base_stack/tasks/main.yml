@@ -743,11 +743,17 @@
     state: present
   become: true
   become_user: root
+- name: Create VASP group
+  ansible.builtin.group:
+    name: ag-archpc-vasp65
+    state: present
+  become: true
+  become_user: root
 - name: Add ccspapp to the CASTEP group
   ansible.builtin.user:
     name: ccspapp
-    groups: ag-archpc-castep,ag-archpc-orca
-    apprend: true
+    groups: ag-archpc-castep,ag-archpc-orca,ag-archpc-vasp65
+    append: true
     state: present
   become: true
   become_user: root
