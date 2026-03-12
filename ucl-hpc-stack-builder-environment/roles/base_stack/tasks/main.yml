@@ -737,10 +737,16 @@
     state: present
   become: true
   become_user: root
+- name: Create ORCA group
+  ansible.builtin.group:
+    name: ag-archpc-orca
+    state: present
+  become: true
+  become_user: root
 - name: Add ccspapp to the CASTEP group
   ansible.builtin.user:
     name: ccspapp
-    groups: ag-archpc-castep
+    groups: ag-archpc-castep,ag-archpc-orca
     apprend: true
     state: present
   become: true
