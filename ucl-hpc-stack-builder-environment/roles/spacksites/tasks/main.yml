@@ -14,14 +14,17 @@
   ansible.builtin.copy: 
     src: files/initial.sh
     dest: /home/ccspapp/initial.sh
+    mode: '0700'
 - name: Normal wrapper
   ansible.builtin.copy: 
     src: files/wrapper.sh
     dest: /home/ccspapp/wrapper.sh
+    mode: '0700'
 - name: Compiler yaml fixer
   ansible.builtin.copy:
     src: files/fix_compilers.py
     dest: /home/ccspapp/fix_compilers.py
+    mode: '0700'
 - name: Target directory
   ansible.builtin.shell: mkdir -p /home/ccspapp/Scratch/spack/0.23
 - name: Fetch Spacksites repo
