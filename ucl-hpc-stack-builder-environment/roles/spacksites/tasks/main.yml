@@ -82,7 +82,7 @@
 
 # Fix fpp
 - name: Add PATH for fpp to all Intel compilers
-  ansible.builtin.shell: "/home/ccspapp/fix_compilers.py"
+  ansible.builtin.shell: "/home/ccspapp/fix_compilers.py /lustre/apps/spack/0.23/deploy/2025-09/spack/etc/spack/linux/compilers.yaml"
 
 # OMPI 4.1.2
 - name: OpenMPI 4.1.2 (1/3)
