@@ -94,19 +94,16 @@
       - libdb
       - libdhash
       - libseccomp
-      - libsigsegv
       - libyaml
       - lzo
       - nettle
       - gnutls
       - pciutils-libs
-      - pcre
       - grep
       - xz
       - squashfs-tools
       - ucx-ib
       - libSM
-      - libpsm2
       - acl
       - gettext-libs
       - gettext
@@ -118,7 +115,6 @@
       - libksba
       - libpcap
       - libnl3-cli
-      - libteam
       - ethtool
       - ipset-libs
       - ipset
@@ -170,7 +166,6 @@
       - newt
       - userspace-rcu
       - libssh-config
-      - libreport-filesystem
       - dnf-data
       - kbd-misc
       - kbd-legacy
@@ -324,7 +319,6 @@
       - python3-requests
       - python3-cloud-what
       - python3-systemd
-      - teamd
       - iptables-nft
       - libarchive
       - libX11-common
@@ -402,7 +396,6 @@
       - python3-subscription-manager-rhsm
       - subscription-manager
       - authselect-libs
-      - dhcp-client
       - initscripts-service
       - emacs-filesystem
       - audit
@@ -419,7 +412,6 @@
       - s-nail
       - openssh-server
       - initscripts-rename-device
-      - xorg-x11-utils
       - xorg-x11-xauth
       - firewalld
       - infiniband-diags
@@ -492,7 +484,6 @@
       - xterm
       - vim-enhanced
       - sssd-kcm
-      - NetworkManager-team
       - NetworkManager-tui
       - p11-kit-trust
       - libgomp
@@ -574,9 +565,7 @@
       - openblas-srpm-macros
       - efi-srpm-macros
       - perl-srpm-macros
-      - man-pages-overrides
       - lua-posix
-      - copy-jdk-configs
       - libipt
       - gdb-headless
       - debugedit
@@ -593,7 +582,6 @@
       - zip
       - dbus-tools
       - lksctp-tools
-      - java-1.8.0-openjdk-headless
       - libpkgconf
       - pkgconf
       - pkgconf-m4
@@ -604,7 +592,6 @@
       - gcc
       - gcc-plugin-annobin
       - libquadmath-devel
-      - annobin
       - zlib-devel
       - libevent-devel
       - libuuid-devel
@@ -621,7 +608,6 @@
       - pesign
       - intltool
       - patchutils
-      - libpsm2-devel
       - pmix-devel
       - tcl-devel
       - gcc-gfortran
@@ -654,9 +640,6 @@
       - mariadb-connector-c-config
       - mariadb-connector-c
       - bash-completion
-      - slurm
-      - slurm-devel
-      - slurm-slurmd
       - glibc-common
       - glibc-gconv-extra
       - glibc-langpack-en
@@ -674,7 +657,6 @@
       - dracut-config-rescue
       - dracut-network
       - dracut-squash
-      - nscd
       - nano
       - shadow-utils-subid
       - fuse3-libs
@@ -697,6 +679,7 @@
       - gmp-c++
       - gmp-devel
       - environment-modules
+      - zlib-ng-compat-static
     state: latest
   become: true
   become_user: root

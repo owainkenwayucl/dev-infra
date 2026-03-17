@@ -1,0 +1,7 @@
+---
+- hosts: all
+  roles:
+  - common_10
+  - second_disk
+  - base_stack_10
+  - spacksites_10
