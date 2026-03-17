@@ -78,7 +78,7 @@
 
 # Add Intel compiler
 - name: Add Intel compiler
-  ansible.builtin.shell: "/home/ccspapp/wrapper.sh spack buildcache update-index /lustre/apps/spack/0.23/buildcache"
+  ansible.builtin.shell: "/home/ccspapp/wrapper.sh spack compiler add $(spack -e base location -i intel-oneapi-compilers)/compiler/latest/bin"
 
 # Fix fpp
 - name: Add PATH for fpp to all Intel compilers
