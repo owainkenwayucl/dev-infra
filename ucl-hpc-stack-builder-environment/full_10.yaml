@@ -3,5 +3,5 @@
   roles:
   - common_10
   - second_disk
-  - base_stack_10
+  - base_stack_el10
   - spacksites_10
