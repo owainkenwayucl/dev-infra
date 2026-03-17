@@ -30,8 +30,8 @@ resource "harvester_virtualmachine" "vm" {
   restart_after_update = true
 
   description = "Base VM"
-
-  cpu    = 4
+  # Note: Heather says that the stack only uses 6 cores so there is no point in making this number larger.
+  cpu    = 6
   memory = "32Gi"
 
   efi         = true
