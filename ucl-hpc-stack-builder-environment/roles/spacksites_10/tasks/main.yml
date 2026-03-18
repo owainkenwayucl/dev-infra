@@ -62,7 +62,7 @@
 
 # Base env
 - name: Base env (1/3)
-  ansible.builtin.shell: "/home/ccspapp/wrapper.sh spack env create base spacksites/spack-env-templates/slurm/2025-09/base.yaml"
+  ansible.builtin.shell: "/home/ccspapp/wrapper.sh spack env create base spacksites/spack-env-templates/el10/2025-09/base.yaml"
 - name: Base env (2/3)
   ansible.builtin.shell: "/home/ccspapp/wrapper.sh spack -e base concretize -U -f"
 - name: Base env (3/3)
@@ -88,7 +88,7 @@
 
 # OMPI 4.1.2
 - name: OpenMPI 4.1.2 (1/3)
-  ansible.builtin.shell: "/home/ccspapp/wrapper.sh spack env create ompi412 spacksites/spack-env-templates/slurm/2025-09/ompi412.yaml"
+  ansible.builtin.shell: "/home/ccspapp/wrapper.sh spack env create ompi412 spacksites/spack-env-templates/el10/2025-09/ompi412.yaml"
 - name: OpenMPI 4.1.2 (2/3)
   ansible.builtin.shell: "/home/ccspapp/wrapper.sh spack -e ompi412 concretize -U -f"
 - name: OpenMPI 4.1.2 (3/3)
@@ -96,7 +96,7 @@
 
 # Intel
 - name: Intel (1/3)
-  ansible.builtin.shell: "/home/ccspapp/wrapper.sh spack env create intel spacksites/spack-env-templates/slurm/2025-09/intel.yaml"
+  ansible.builtin.shell: "/home/ccspapp/wrapper.sh spack env create intel spacksites/spack-env-templates/el10/2025-09/intel.yaml"
 - name: Intel (2/3)
   ansible.builtin.shell: "/home/ccspapp/wrapper.sh spack -e intel concretize -U -f"
 - name: Intel (3/3)
@@ -104,7 +104,7 @@
 
 # Intel
 - name: Kathleen (1/3)
-  ansible.builtin.shell: "/home/ccspapp/wrapper.sh spack env create kathleen spacksites/spack-env-templates/slurm/2025-09/kathleen.yaml"
+  ansible.builtin.shell: "/home/ccspapp/wrapper.sh spack env create kathleen spacksites/spack-env-templates/el10/2025-09/kathleen.yaml"
 - name: Kathleen (2/3)
   ansible.builtin.shell: "/home/ccspapp/wrapper.sh spack -e kathleen concretize -U -f"
 - name: Kathleen (3/3)
