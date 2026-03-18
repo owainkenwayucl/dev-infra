@@ -122,4 +122,4 @@
 
 # Set up modules
 - name: add module paths
-  ansible.builtin.shell: "echo 'export MODULEPATH=/apps/spack/0.23/deploy/2025-09/modules/linux-almalinux9-icelake/:/apps/hpc-modulefiles/kathleen' >> ~/.bashrc"
+  ansible.builtin.shell: "echo 'export MODULEPATH=/apps/spack/0.23/deploy/2025-09/modules/linux-almalinux10-icelake/:/apps/hpc-modulefiles/kathleen' >> ~/.bashrc"
