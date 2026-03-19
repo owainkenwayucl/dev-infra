@@ -50,7 +50,7 @@
 - name: Stage two compiler (1/6)
   ansible.builtin.shell: "/home/ccspapp/wrapper.sh spack env create second_compiler spacksites/spack-env-templates/slurm/2025-09/second_compiler.yaml"
 - name: Stage two compiler (2/6)
-  ansible.builtin.shell: "/home/ccspapp/wrapper.sh spack compiler add $(spack -e compiler location -i gcc@12.3.0)"
+  ansible.builtin.shell: "/home/ccspapp/wrapper.sh spack compiler add $(/home/ccspapp/wrapper.sh spack -e compiler location -i gcc@12.3.0)"
 - name: Stage two compiler (3/6)
   ansible.builtin.shell: "/home/ccspapp/wrapper.sh spack -e second_compiler concretize -U -f"
 - name: Stage two compiler (4/6)
@@ -80,7 +80,7 @@
 
 # Add Intel compiler
 - name: Add Intel compiler
-  ansible.builtin.shell: "/home/ccspapp/wrapper.sh spack compiler add $(spack -e base location -i intel-oneapi-compilers)/compiler/latest/bin"
+  ansible.builtin.shell: "/home/ccspapp/wrapper.sh spack compiler add $(/home/ccspapp/wrapper.sh spack -e base location -i intel-oneapi-compilers)/compiler/latest/bin"
 
 # Fix fpp
 - name: Add PATH for fpp to all Intel compilers

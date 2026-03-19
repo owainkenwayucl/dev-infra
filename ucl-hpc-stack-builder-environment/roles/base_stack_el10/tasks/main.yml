@@ -726,3 +726,7 @@
     state: present
   become: true
   become_user: root
+- name: Reboot
+  reboot:
+  become: true
+  become_user: root
