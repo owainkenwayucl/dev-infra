@@ -11,12 +11,12 @@
     src: /apps/pkgstore.tar.gz
     dest: /apps
 - name: Initial wrapper
-  ansible.builtin.copy: 
+  ansible.builtin.template: 
     src: templates/initial.sh.j2
     dest: /home/ccspapp/initial.sh
     mode: '0700'
 - name: Normal wrapper
-  ansible.builtin.copy: 
+  ansible.builtin.template: 
     src: templates/wrapper.sh.j2
     dest: /home/ccspapp/wrapper.sh
     mode: '0700'
