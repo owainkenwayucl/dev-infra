@@ -1,0 +1,6 @@
+---
+ss_repo: "{{ 'https://github.com/owainkenwayucl/hpc-spack.git' if ansible_distribution_major_version == '10' else 'https://github.com/UCL-ARC/hpc-spack.git' }}"
+ss_version: "0.23"
+ss_branch: "{{ 'el10'  if ansible_distribution_major_version == '10' else ss_version }}"
+stack_ver: "2025-09"
+

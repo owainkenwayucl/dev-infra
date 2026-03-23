@@ -1,0 +1,122 @@
+- name: Copy pkg store
+  ansible.builtin.copy:
+    src: files/pkgstore.tar.gz
+    dest: /apps/pkgstore.tar.gz
+    owner: ccspapp
+  become: true
+  become_user: root
+- name: Unpack pkg store 
+  ansible.builtin.unarchive:
+    remote_src: true
+    src: /apps/pkgstore.tar.gz
+    dest: /apps
+- name: Initial wrapper
+  ansible.builtin.copy: 
+    src: templates/initial.sh.j2
+    dest: /home/ccspapp/initial.sh
+    mode: '0700'
+- name: Normal wrapper
+  ansible.builtin.copy: 
+    src: templates/wrapper.sh.j2
+    dest: /home/ccspapp/wrapper.sh
+    mode: '0700'
+- name: Compiler yaml fixer
+  ansible.builtin.copy:
+    src: files/fix_compilers.py
+    dest: /home/ccspapp/fix_compilers.py
+    mode: '0700'
+- name: Target directory
+  ansible.builtin.shell: "mkdir -p /home/ccspapp/Scratch/spack/{{ ss_version }}"
+- name: Fetch Spacksites repo
+  ansible.builtin.git:
+    repo: "{{ ss_repo }}"
+    version: "{{ ss_branch }}"
+    dest: "/home/ccspapp/Scratch/spack/{{ ss_version }}/hpc-spack"
+- name: Get HPC modules
+  ansible.builtin.git:
+    repo: https://github.com/UCL-ARC/hpc-modulefiles.git
+    dest: /apps/hpc-modulefiles
+- name: Initial create
+  ansible.builtin.shell: "/home/ccspapp/initial.sh spacksites/spacksites --config-file spacksites/settings/deploy_sites.ini create {{ stack_ver }}"
+
+# Compilers
+
+- name: Stage one compiler
+  ansible.builtin.shell: "/home/ccspapp/initial.sh spacksites/spacksites --config-file spacksites/settings/deploy_sites.ini install-env {{ stack_ver }} compiler first_compiler.yaml"
+
+- name: Stage two compiler (1/6)
+  ansible.builtin.shell: "/home/ccspapp/wrapper.sh spack env create second_compiler spacksites/spack-env-templates/slurm/{{ stack_ver }}/second_compiler.yaml"
+- name: Stage two compiler (2/6)
+  ansible.builtin.shell: "/home/ccspapp/wrapper.sh spack compiler add $(/home/ccspapp/wrapper.sh spack -e compiler location -i gcc@12.3.0)"
+- name: Stage two compiler (3/6)
+  ansible.builtin.shell: "/home/ccspapp/wrapper.sh spack -e second_compiler concretize -U -f"
+- name: Stage two compiler (4/6)
+  ansible.builtin.shell: "/home/ccspapp/wrapper.sh spack -e second_compiler install --only-concrete"
+- name: Stage two compiler (5/6)
+  ansible.builtin.shell: "/home/ccspapp/wrapper.sh spack compiler remove gcc@12.3.0"
+- name: Stage two compiler (6/6)
+  ansible.builtin.shell: "/home/ccspapp/wrapper.sh spack compiler add $(/home/ccspapp/wrapper.sh spack -e second_compiler location -i gcc@12.3.0%gcc@12.3.0)"
+
+# Base env
+- name: Base env (1/3)
+  ansible.builtin.shell: "/home/ccspapp/wrapper.sh spack env create base spacksites/spack-env-templates/slurm/{{ stack_ver }}/base.yaml"
+- name: Base env (2/3)
+  ansible.builtin.shell: "/home/ccspapp/wrapper.sh spack -e base concretize -U -f"
+- name: Base env (3/3)
+  ansible.builtin.shell: "/home/ccspapp/wrapper.sh spack -e base install --only-concrete"
+
+# Fix perl
+- name: Fix perl
+  ansible.builtin.shell: "/home/ccspapp/wrapper.sh spack -e base install -y --no-cache --overwrite perl"
+
+# Push cache
+- name: Push buildcache (1/2)
+  ansible.builtin.shell: "/home/ccspapp/wrapper.sh spack -e base buildcache push /lustre/apps/spack/{{ ss_version }}/buildcache"
+- name: Push buildcache (2/2)
+  ansible.builtin.shell: "/home/ccspapp/wrapper.sh spack buildcache update-index /lustre/apps/spack/{{ stack_ver }}/buildcache"
+
+# Add Intel compiler
+- name: Add Intel compiler
+  ansible.builtin.shell: "/home/ccspapp/wrapper.sh spack compiler add $(/home/ccspapp/wrapper.sh spack -e base location -i intel-oneapi-compilers)/compiler/latest/bin"
+
+# Fix fpp
+- name: Add PATH for fpp to all Intel compilers
+  ansible.builtin.shell: "/home/ccspapp/fix_compilers.py /lustre/apps/spack/{{ stack_ver }}/deploy/{{ stack_ver }}/spack/etc/spack/linux/compilers.yaml"
+
+# OMPI 4.1.2
+- name: OpenMPI 4.1.2 (1/3)
+  ansible.builtin.shell: "/home/ccspapp/wrapper.sh spack env create ompi412 spacksites/spack-env-templates/slurm/{{ stack_ver }}/ompi412.yaml"
+- name: OpenMPI 4.1.2 (2/3)
+  ansible.builtin.shell: "/home/ccspapp/wrapper.sh spack -e ompi412 concretize -U -f"
+- name: OpenMPI 4.1.2 (3/3)
+  ansible.builtin.shell: "/home/ccspapp/wrapper.sh spack -e ompi412 install --only-concrete"
+
+# Intel
+- name: Intel (1/3)
+  ansible.builtin.shell: "/home/ccspapp/wrapper.sh spack env create intel spacksites/spack-env-templates/slurm/{{ stack_ver }}/intel.yaml"
+- name: Intel (2/3)
+  ansible.builtin.shell: "/home/ccspapp/wrapper.sh spack -e intel concretize -U -f"
+- name: Intel (3/3)
+  ansible.builtin.shell: "/home/ccspapp/wrapper.sh spack -e intel install --only-concrete"
+
+# Intel
+- name: Kathleen (1/3)
+  ansible.builtin.shell: "/home/ccspapp/wrapper.sh spack env create kathleen spacksites/spack-env-templates/slurm/{{ stack_ver }}/kathleen.yaml"
+- name: Kathleen (2/3)
+  ansible.builtin.shell: "/home/ccspapp/wrapper.sh spack -e kathleen concretize -U -f"
+- name: Kathleen (3/3)
+  ansible.builtin.shell: "/home/ccspapp/wrapper.sh spack -e kathleen install --only-concrete"
+
+# Rebuild modules
+- name: rebuild modules (1/4)
+  ansible.builtin.shell: "/home/ccspapp/wrapper.sh spack -e base module tcl refresh --delete-tree -y"
+- name: rebuild modules (2/4)
+  ansible.builtin.shell: "/home/ccspapp/wrapper.sh spack -e ompi412 module tcl refresh --delete-tree -y"
+- name: rebuild modules (3/4)
+  ansible.builtin.shell: "/home/ccspapp/wrapper.sh spack -e intel module tcl refresh --delete-tree -y"
+- name: rebuild modules (4/4)
+  ansible.builtin.shell: "/home/ccspapp/wrapper.sh spack -e kathleen module tcl refresh --delete-tree -y"
+
+# Set up modules
+- name: add module paths
+  ansible.builtin.shell: "echo \"export MODULEPATH=/apps/spack/{{ stack_ver }}/deploy/{{ stack_ver }}/modules/linux-almalinux{{ ansible_distribution_major_version }}-icelake/:/apps/hpc-modulefiles/kathleen\" >> ~/.bashrc"
