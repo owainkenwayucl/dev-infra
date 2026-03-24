@@ -1,3 +1,26 @@
+- name: Delete old copies of things (1/2)
+  ansible.builtin.file:
+  ansible.builtin.file:
+    path: /lustre/apps
+    state: absent
+  become: true
+  become_user: root
+- name: Delete old copies of things (2/2)
+  ansible.builtin.file:
+  ansible.builtin.file:
+    path:  /home/ccspapp/Scratch/spack
+    state: absent
+  become: true
+  become_user: root
+- name: Create apps directory
+  ansible.builtin.file:
+    path: /lustre/apps
+    state: directory
+    owner: ccspapp
+    group: ccspapp
+  become: true
+  become_user: root
+
 - name: Copy pkg store
   ansible.builtin.copy:
     src: files/pkgstore.tar.gz

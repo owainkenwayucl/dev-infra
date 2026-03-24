@@ -5,4 +5,4 @@ source spacksites/myriad-utilities/init-spacksites-rhel9.sh
 
 eval $(spacksites/spacksites --config-file spacksites/settings/deploy_sites.ini spack-setup-env 2025-09)
 
-"$@"
+"$@" 2>&1 >> /home/ccspapp/spack.log 
