@@ -1,12 +1,10 @@
 - name: Delete old copies of things (1/2)
   ansible.builtin.file:
-  ansible.builtin.file:
     path: /lustre/apps
     state: absent
   become: true
   become_user: root
 - name: Delete old copies of things (2/2)
-  ansible.builtin.file:
   ansible.builtin.file:
     path:  /home/ccspapp/Scratch/spack
     state: absent
