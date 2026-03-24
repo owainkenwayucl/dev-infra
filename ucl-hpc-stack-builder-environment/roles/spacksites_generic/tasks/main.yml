@@ -41,6 +41,11 @@
     src: templates/wrapper.sh.j2
     dest: /home/ccspapp/wrapper.sh
     mode: '0700'
+- name: Nolog wrapper
+  ansible.builtin.template: 
+    src: templates/wrapper_nolog.sh.j2
+    dest: /home/ccspapp/wrapper_nolog.sh
+    mode: '0700'
 - name: Compiler yaml fixer
   ansible.builtin.copy:
     src: files/fix_compilers.py
@@ -68,7 +73,7 @@
 - name: Stage two compiler (1/6)
   ansible.builtin.shell: "/home/ccspapp/wrapper.sh spack env create second_compiler spacksites/spack-env-templates/slurm/{{ stack_ver }}/second_compiler.yaml"
 - name: Stage two compiler (2/6)
-  ansible.builtin.shell: "/home/ccspapp/wrapper.sh spack compiler add $(/home/ccspapp/wrapper.sh spack -e compiler location -i gcc@12.3.0)"
+  ansible.builtin.shell: "/home/ccspapp/wrapper.sh spack compiler add $(/home/ccspapp/wrapper_nolog.sh spack -e compiler location -i gcc@12.3.0)"
 - name: Stage two compiler (3/6)
   ansible.builtin.shell: "/home/ccspapp/wrapper.sh spack -e second_compiler concretize -U -f"
 - name: Stage two compiler (4/6)
@@ -76,7 +81,7 @@
 - name: Stage two compiler (5/6)
   ansible.builtin.shell: "/home/ccspapp/wrapper.sh spack compiler remove gcc@12.3.0"
 - name: Stage two compiler (6/6)
-  ansible.builtin.shell: "/home/ccspapp/wrapper.sh spack compiler add $(/home/ccspapp/wrapper.sh spack -e second_compiler location -i gcc@12.3.0%gcc@12.3.0)"
+  ansible.builtin.shell: "/home/ccspapp/wrapper.sh spack compiler add $(/home/ccspapp/wrapper_nolog.sh spack -e second_compiler location -i gcc@12.3.0%gcc@12.3.0)"
 
 # Base env
 - name: Base env (1/3)
@@ -98,7 +103,7 @@
 
 # Add Intel compiler
 - name: Add Intel compiler
-  ansible.builtin.shell: "/home/ccspapp/wrapper.sh spack compiler add $(/home/ccspapp/wrapper.sh spack -e base location -i intel-oneapi-compilers)/compiler/latest/bin"
+  ansible.builtin.shell: "/home/ccspapp/wrapper.sh spack compiler add $(/home/ccspapp/wrapper_nolog.sh spack -e base location -i intel-oneapi-compilers)/compiler/latest/bin"
 
 # Fix fpp
 - name: Add PATH for fpp to all Intel compilers

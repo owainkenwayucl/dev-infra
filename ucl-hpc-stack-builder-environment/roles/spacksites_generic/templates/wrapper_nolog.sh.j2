@@ -1,0 +1,8 @@
+#!/bin/bash
+
+cd /home/ccspapp/Scratch/spack/{{ ss_version }}/hpc-spack
+source spacksites/myriad-utilities/init-spacksites-rhel9.sh
+
+eval $(spacksites/spacksites --config-file spacksites/settings/deploy_sites.ini spack-setup-env 2025-09)
+
+"$@" 
