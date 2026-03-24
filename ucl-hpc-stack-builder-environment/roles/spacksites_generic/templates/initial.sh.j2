@@ -3,4 +3,4 @@
 cd /home/ccspapp/Scratch/spack/{{ ss_version }}/hpc-spack
 source spacksites/myriad-utilities/init-spacksites-rhel9.sh
 
-"$@"
+"$@" 2>&1 >> /home/ccspapp/spack.log 
