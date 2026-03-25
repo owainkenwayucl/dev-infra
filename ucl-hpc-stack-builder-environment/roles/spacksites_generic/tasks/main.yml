@@ -71,7 +71,7 @@
   ansible.builtin.shell: "/home/ccspapp/initial.sh spacksites/spacksites --config-file spacksites/settings/deploy_sites.ini install-env {{ stack_ver }} compiler first_compiler.yaml"
 
 - name: Stage two compiler (1/6)
-  ansible.builtin.shell: "/home/ccspapp/wrapper.sh spack env create second_compiler spacksites/spack-env-templates/slurm/{{ stack_ver }}/second_compiler.yaml"
+  ansible.builtin.shell: "/home/ccspapp/wrapper.sh spack env create second_compiler spacksites/spack-env-templates/{{ stack_platform }}/{{ stack_ver }}/second_compiler.yaml"
 - name: Stage two compiler (2/6)
   ansible.builtin.shell: "/home/ccspapp/wrapper.sh spack compiler add $(/home/ccspapp/wrapper_nolog.sh spack -e compiler location -i gcc@12.3.0)"
 - name: Stage two compiler (3/6)
@@ -85,7 +85,7 @@
 
 # Base env
 - name: Base env (1/3)
-  ansible.builtin.shell: "/home/ccspapp/wrapper.sh spack env create base spacksites/spack-env-templates/slurm/{{ stack_ver }}/base.yaml"
+  ansible.builtin.shell: "/home/ccspapp/wrapper.sh spack env create base spacksites/spack-env-templates/{{ stack_platform }}/{{ stack_ver }}/base.yaml"
 - name: Base env (2/3)
   ansible.builtin.shell: "/home/ccspapp/wrapper.sh spack -e base concretize -U -f"
 - name: Base env (3/3)
@@ -97,9 +97,9 @@
 
 # Push cache
 - name: Push buildcache (1/2)
-  ansible.builtin.shell: "/home/ccspapp/wrapper.sh spack -e base buildcache push /lustre/apps/spack/{{ ss_version }}/buildcache"
+  ansible.builtin.shell: "/home/ccspapp/wrapper.sh spack -e base buildcache push /lustre/apps/{{ stack_platform }}/{{ ss_version }}/buildcache"
 - name: Push buildcache (2/2)
-  ansible.builtin.shell: "/home/ccspapp/wrapper.sh spack buildcache update-index /lustre/apps/spack/{{ ss_version }}/buildcache"
+  ansible.builtin.shell: "/home/ccspapp/wrapper.sh spack buildcache update-index /lustre/apps/{{ stack_platform }}/{{ ss_version }}/buildcache"
 
 # Add Intel compiler
 - name: Add Intel compiler
@@ -107,11 +107,11 @@
 
 # Fix fpp
 - name: Add PATH for fpp to all Intel compilers
-  ansible.builtin.shell: "/home/ccspapp/fix_compilers.py /lustre/apps/spack/{{ stack_ver }}/deploy/{{ stack_ver }}/spack/etc/spack/linux/compilers.yaml"
+  ansible.builtin.shell: "/home/ccspapp/fix_compilers.py /lustre/apps/spack/{{ stack_ver }}/deploy/{{ stack_ver }}/{{ stack_platform }}/etc/spack/linux/compilers.yaml"
 
 # OMPI 4.1.2
 - name: OpenMPI 4.1.2 (1/3)
-  ansible.builtin.shell: "/home/ccspapp/wrapper.sh spack env create ompi412 spacksites/spack-env-templates/slurm/{{ stack_ver }}/ompi412.yaml"
+  ansible.builtin.shell: "/home/ccspapp/wrapper.sh spack env create ompi412 spacksites/spack-env-templates/{{ stack_platform }}/{{ stack_ver }}/ompi412.yaml"
 - name: OpenMPI 4.1.2 (2/3)
   ansible.builtin.shell: "/home/ccspapp/wrapper.sh spack -e ompi412 concretize -U -f"
 - name: OpenMPI 4.1.2 (3/3)
@@ -119,7 +119,7 @@
 
 # Intel
 - name: Intel (1/3)
-  ansible.builtin.shell: "/home/ccspapp/wrapper.sh spack env create intel spacksites/spack-env-templates/slurm/{{ stack_ver }}/intel.yaml"
+  ansible.builtin.shell: "/home/ccspapp/wrapper.sh spack env create intel spacksites/spack-env-templates/{{ stack_platform }}/{{ stack_ver }}/intel.yaml"
 - name: Intel (2/3)
   ansible.builtin.shell: "/home/ccspapp/wrapper.sh spack -e intel concretize -U -f"
 - name: Intel (3/3)
@@ -127,7 +127,7 @@
 
 # Intel
 - name: Kathleen (1/3)
-  ansible.builtin.shell: "/home/ccspapp/wrapper.sh spack env create kathleen spacksites/spack-env-templates/slurm/{{ stack_ver }}/kathleen.yaml"
+  ansible.builtin.shell: "/home/ccspapp/wrapper.sh spack env create kathleen spacksites/spack-env-templates/{{ stack_platform }}/{{ stack_ver }}/kathleen.yaml"
 - name: Kathleen (2/3)
   ansible.builtin.shell: "/home/ccspapp/wrapper.sh spack -e kathleen concretize -U -f"
 - name: Kathleen (3/3)
