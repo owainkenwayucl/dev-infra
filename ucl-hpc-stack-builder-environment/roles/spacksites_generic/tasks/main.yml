@@ -99,7 +99,7 @@
 - name: Push buildcache (1/2)
   ansible.builtin.shell: "/home/ccspapp/wrapper.sh spack -e base buildcache push /lustre/apps/spack/{{ ss_version }}/buildcache"
 - name: Push buildcache (2/2)
-  ansible.builtin.shell: "/home/ccspapp/wrapper.sh spack buildcache update-index /lustre/apps/spack/{{ stack_ver }}/buildcache"
+  ansible.builtin.shell: "/home/ccspapp/wrapper.sh spack buildcache update-index /lustre/apps/spack/{{ ss_version }}/buildcache"
 
 # Add Intel compiler
 - name: Add Intel compiler
