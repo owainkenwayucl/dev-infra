@@ -1,0 +1,42 @@
+---
+- hosts: all
+  roles:
+  - common
+  - nfs-packages
+  - hostfile
+
+- hosts: loginnode
+  roles:
+  - loginnodename
+
+- hosts: mgmtnode
+  roles:
+  - mgmtnodename  
+
+- hosts: workers
+  roles:
+  - workername
+
+# Set up shared keys
+- hosts: loginnode
+  roles: 
+  - commonkeys-server
+- hosts: mgmtnode:workers
+  roles:
+  - commonkeys-clients
+
+# Set up NFS
+- hosts: mgmtnode
+  roles:
+  - nfs-server
+- hosts: loginnode:workers
+  roles: 
+  - nfs-clients
+
+# Set up K3s
+- hosts: loginnode
+  roles: 
+  - k3s-head
+- hosts: workers
+  roles:
+  - k3s-worker
