@@ -1,0 +1,7 @@
+- name: Download and install LinuxBrew 🐧🍻
+  shell: "curl -sfL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh | bash -"
+- name: Add Linuxbrew to path.
+  lineinfile:
+    dest: "~/.bashrc"
+    line: eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
