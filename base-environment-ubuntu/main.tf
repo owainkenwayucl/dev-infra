@@ -60,6 +60,10 @@ resource "harvester_virtualmachine" "vm" {
     auto_delete = true
   }
 
+  tags = {
+    condenser_ingress_endpt_interface = "enp1s0"
+  }
+
   timeouts {
     create = "30m"
     delete = "30m"
